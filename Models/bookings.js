@@ -7,13 +7,17 @@ const bookingSchema = new mongoose.Schema({
   ownerName: String,
   sitterName: String,
   date: Date,
-  time: TimeRanges,
   address: String,
   confirmation: Boolean,
 });
 
-const booking = mongoose.model("Booking", bookingSchema);
+const Booking = mongoose.model("Booking", bookingSchema);
+
+// Find records by user id
+const findByUserId = (userId) => {
+  return Booking.findOne({ userId: userId });
+};
 
 module.exports = {
-  booking,
+  findByUserId,
 };
