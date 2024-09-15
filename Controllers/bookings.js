@@ -2,10 +2,9 @@ const booking = require("../Models/bookings");
 
 const getBookingByUserId = async (req, res) => {
   const userId = req.params.userId;
-  console.log(userId);
 
   try {
-    const bookings = await booking.findByUserId({ userId });
+    const bookings = await booking.findByUserId(userId);
     if (!bookings) {
       return res
         .status(404)
@@ -18,28 +17,31 @@ const getBookingByUserId = async (req, res) => {
   }
 };
 
-// const confirmBooking = async (req, res) => {
-//   const { bookingId, userId, confirmation } = req.body;
+const confirmBooking = async (req, res) => {
+  console.log(req.body);
+  const { bookingId, confirmation } = req.body;
 
-//   try {
-//     const updatedBooking = await booking.findOneAndUpdate(
-//       { bookingId },
-//       { confirmation },
-//       { new: true, runValidators: true }
-//     );
+  try {
+    const updatedBooking = await booking.findByIdAndUpdate(
+      bookingId,
+      confirmation
+    );
 
-//     if (!updatedBooking) {
-//       return res.status(404).json({ error: "Booking not found" });
-//     }
+    if (!updatedBooking) {
+      return res.status(404).json({ error: "Booking not found" });
+    }
 
-//     res.status(200).json(updatedBooking);
-//   } catch (error) {
-//     if (error.name === "ValidationError") {
-//       return res.status(400).json({ error: "Validation failed" });
-//     }
-//     res.status(500).json({ error: "Failed to update booking" });
-//   }
-// };
+    res.status(200).json(updatedBooking);
+  } catch (error) {
+    if (error.name === "ValidationError") {
+      return res.status(400).json({ error: "Validation failed" });
+    }
+    console.log(error);
+    res.status(500).json({
+      error: "Failed to update booking",
+    });
+  }
+};
 
 // const getCompletedBookings = async (req, res) => {
 //   const { userId } = req.params;
@@ -61,4 +63,5 @@ const getBookingByUserId = async (req, res) => {
 
 module.exports = {
   getBookingByUserId,
+  confirmBooking,
 };

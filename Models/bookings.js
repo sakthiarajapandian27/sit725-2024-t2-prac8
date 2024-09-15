@@ -15,9 +15,14 @@ const Booking = mongoose.model("Booking", bookingSchema);
 
 // Find records by user id
 const findByUserId = (userId) => {
-  return Booking.findOne({ userId: userId });
+  return Booking.find({ userId: userId });
+};
+
+const findByIdAndUpdate = (id, confirmation) => {
+  return Booking.findOneAndUpdate({ _id: id }, { confirmation });
 };
 
 module.exports = {
   findByUserId,
+  findByIdAndUpdate,
 };
