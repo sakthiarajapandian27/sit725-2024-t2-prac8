@@ -18,13 +18,13 @@ const updateBookingsLayout = (bookings) => {
       // Create card content
       card.innerHTML = `
     <div class="card-title">${item.service} on ${date}</div>
-    <div class="card-info">Owner Name: ${item.ownerName}</div>
-    <div class="card-info">Sitter Name: ${item.sitterName}</div>
+    <div class="card-info">${user}</div>
     <div class="card-info">Date: ${date}</div>
     <div class="card-info">Time: ${time}</div>
+    <div class="card-info">Location: ${item.address}</div>
     <div class="card-buttons">
-        <button class="confirm-button" id="confirm"> <span class="material-icons">check_box</span>Confirm</button>
-        <button class="decline-button" id="decline">Decline</button>
+        <button class="confirm-button" id="confirm"> <span class="material-icons">check_circle</span>Confirm</button>
+        <button class="decline-button" id="decline"> <span class="material-icons">remove_circle</span>Decline</button>
     </div>
 `;
       // Attach event listeners to buttons
@@ -42,7 +42,6 @@ const updateBookingsLayout = (bookings) => {
 };
 
 const handleConfirm = (booking, cardElement) => {
-  addToHistory(booking);
   updateBookingConfirmation(1, booking._id, true);
   cardElement.remove();
 };
@@ -80,8 +79,7 @@ const updateBookingConfirmation = (userId, bookingId, confirmation) => {
       },
     }),
     success: function (data) {
-      if (data.confirmation) {
-        console.log("inside");
+      if (confirmation) {
         addToHistory(data);
       }
     },
@@ -109,8 +107,8 @@ function addToHistory(item) {
 
   // Create the content for the history card
   historyCard.innerHTML = `
-     <span class="material-icons">pets</span>
-      <div class="history-title">${item.service} on ${date}</div>
+     
+      <div class="history-title"> <span class="material-icons">pets</span> ${item.service} on ${date}</div>
       <div class="card-info">${user}</div>
       <div class="card-info">Date: ${date}</div>
       <div class="card-info">Time: ${time}</div>
