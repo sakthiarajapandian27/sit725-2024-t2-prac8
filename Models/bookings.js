@@ -22,7 +22,10 @@ const findByUserId = (userId) => {
 };
 
 const findByIdAndUpdate = (id, confirmation) => {
-  return Booking.findOneAndUpdate({ _id: id }, { confirmation });
+  return Booking.findOneAndUpdate(
+    { _id: id },
+    { confirmation: confirmation, confirmed: true }
+  );
 };
 
 module.exports = {

@@ -17,6 +17,6 @@ router.get("/", (req, res) => {
   );
 });
 router.get("/bookings/:userId", bookingController.getBookingByUserId);
-router.put("/bookings/:userId", bookingController.confirmBooking);
+router.patch("/bookings/:userId", bookingController.confirmBooking);
 
 module.exports = router;

@@ -18,13 +18,12 @@ const getBookingByUserId = async (req, res) => {
 };
 
 const confirmBooking = async (req, res) => {
-  console.log(req.body);
-  const { bookingId, confirmation } = req.body;
+  const { filter, update } = req.body;
 
   try {
     const updatedBooking = await booking.findByIdAndUpdate(
-      bookingId,
-      confirmation
+      filter.bookingId,
+      update.confirmation
     );
 
     if (!updatedBooking) {
