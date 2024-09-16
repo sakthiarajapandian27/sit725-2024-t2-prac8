@@ -29,6 +29,7 @@ const findByIdAndUpdate = (id, confirmation) => {
 };
 
 module.exports = {
+  Booking,
   findByUserId,
   findByIdAndUpdate,
 };
