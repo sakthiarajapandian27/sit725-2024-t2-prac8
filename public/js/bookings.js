@@ -6,15 +6,22 @@ const updateBookingsLayout = (bookings) => {
 
       card.classList.add("card");
 
-      const isSitter = item.type === "sitter";
+      const time = convertTo24Hour(item.date);
+      const date = getDate(item.date);
+      let user = null;
+      if (item.type == "sitter") {
+        user = `Sitter Name: ${item.sitterName}`;
+      } else {
+        user = `Owner Name: ${item.ownerName}`;
+      }
 
       // Create card content
       card.innerHTML = `
-    <div class="card-title">${item.service} on ${item.date}</div>
+    <div class="card-title">${item.service} on ${date}</div>
     <div class="card-info">Owner Name: ${item.ownerName}</div>
     <div class="card-info">Sitter Name: ${item.sitterName}</div>
-    <div class="card-info">Date: ${item.date}</div>
-    <div class="card-info">Time: ${item.time}</div>
+    <div class="card-info">Date: ${date}</div>
+    <div class="card-info">Time: ${time}</div>
     <div class="card-buttons">
         <button class="confirm-button" id="confirm"> <span class="material-icons">check_box</span>Confirm</button>
         <button class="decline-button" id="decline">Decline</button>
@@ -74,6 +81,7 @@ const updateBookingConfirmation = (userId, bookingId, confirmation) => {
     }),
     success: function (data) {
       if (data.confirmation) {
+        console.log("inside");
         addToHistory(data);
       }
     },
@@ -138,16 +146,4 @@ const getDate = (dateTimeStr) => {
 
 $(document).ready(() => {
   fetchAndDisplayBookings("S001");
-
-  // Toggle arrow and details visibility
-  const toggleArrow = document.getElementById("toggleArrow");
-  const detailsDiv = document.getElementById("details");
-
-  toggleArrow.addEventListener("click", () => {
-    detailsDiv.style.display =
-      detailsDiv.style.display === "none" ? "block" : "none";
-
-    // Rotate the arrow icon when clicked
-    toggleArrow.classList.toggle("rotate");
-  });
 });
