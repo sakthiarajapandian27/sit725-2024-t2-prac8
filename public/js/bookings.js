@@ -1,7 +1,8 @@
 const updateBookingsLayout = (bookings) => {
   const cardsContainer = document.getElementById("cardsContainer");
+  let userId = window.location.search.replace("?", "").split("=")?.[1] || 1;
   bookings.forEach((item) => {
-    if (!item.confirmed) {
+    if (!item.confirmed && userId.startsWith("S")) {
       const card = document.createElement("div");
 
       card.classList.add("card");
@@ -9,16 +10,11 @@ const updateBookingsLayout = (bookings) => {
       const time = convertTo24Hour(item.date);
       const date = getDate(item.date);
       let user = null;
-      if (item.type == "sitter") {
-        user = `Sitter Name: ${item.sitterName}`;
-      } else {
-        user = `Owner Name: ${item.ownerName}`;
-      }
 
       // Create card content
       card.innerHTML = `
     <div class="card-title">${item.service} on ${date}</div>
-    <div class="card-info">${user}</div>
+    <div class="card-info">Owner Name: ${item.ownerName}</div>
     <div class="card-info">Date: ${date}</div>
     <div class="card-info">Time: ${time}</div>
     <div class="card-info">Location: ${item.address}</div>
@@ -65,7 +61,7 @@ const fetchAndDisplayBookings = (userId) => {
 };
 
 const updateBookingConfirmation = (userId, bookingId, confirmation) => {
-  userId = "S001";
+  userId = window.location.search.replace("?", "").split("=")?.[1] || 1;
   $.ajax({
     url: `api2/bookings/${userId}`,
     type: "PATCH",
@@ -99,11 +95,18 @@ function addToHistory(item) {
   const time = convertTo24Hour(item.date);
   const date = getDate(item.date);
   let user = null;
-  if (item.type == "sitter") {
+  //Todo: remove once the profile is merged
+  let userId = window.location.search.replace("?", "").split("=")?.[1] || 1;
+  if (userId.startsWith("O")) {
     user = `Sitter Name: ${item.sitterName}`;
   } else {
     user = `Owner Name: ${item.ownerName}`;
   }
+  // if (item.type == "sitter") {
+  //   user = `Sitter Name: ${item.sitterName}`;
+  // } else {
+  //   user = `Owner Name: ${item.ownerName}`;
+  // }
 
   // Create the content for the history card
   historyCard.innerHTML = `
@@ -143,5 +146,7 @@ const getDate = (dateTimeStr) => {
 };
 
 $(document).ready(() => {
-  fetchAndDisplayBookings("S001");
+  let userId = window.location.search.replace("?", "").split("=")?.[1] || 1;
+
+  fetchAndDisplayBookings(userId);
 });
