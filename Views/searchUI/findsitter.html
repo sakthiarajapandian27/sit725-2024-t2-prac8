@@ -4,9 +4,9 @@
     <!--Import Google Icon Font-->
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <!--Import materialize.css-->
-    <link type="text/css" rel="stylesheet" href="css/materialize.min.css" media="screen,projection"/>
+    <link type="text/css" rel="stylesheet" href="/css/materialize.min.css" media="screen,projection"/>
+    <link rel="stylesheet" href="/css/search.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-    <link rel="stylesheet" href="css/search.css">
 
     <!--Let browser know website is optimized for mobile-->
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
@@ -287,9 +287,9 @@
         <p>Find trusted pet sitters & dog walkers near you</p>
 
         <div class="search-bar">
-            <form action="#" method="get">
+            <form method="get">
                 <input type="text" id="searchLocation" placeholder="Suburb or address" class="input-field">
-                <select class="input-field">
+                <select class="input-field" id="searchService">
                     <option value="" disabled selected>Pet Services</option>
                     <option value="">Pet Daycare</option>
                     <option value="sitting">Pet Sitting</option>
@@ -298,8 +298,11 @@
                 </select>
                 <input type="date" id="searchDate" placeholder="Search by date" class="input-field">
                 <input type="number" id="searchPets" placeholder="Add pets" class="input-field">
-                <button id="searchBookings" type="submit" class="search-btn">Search</button>
+                <button id="searchdogsitter" type="submit" class="search-btn">Search</button>
             </form>
+        </div>
+        <div id="results">
+            <!-- Search results will be displayed here -->
         </div>
     </main>
 
@@ -312,6 +315,7 @@
     </footer>
 
     <!-- Import materialize.js -->
-    <script type="text/javascript" src="js/materialize.min.js"></script>
+    <script type="text/javascript" src="/js/materialize.min.js"></script>
+    <script src="/js/DogsitterSearch.js"></script>
 </body>
 </html>
