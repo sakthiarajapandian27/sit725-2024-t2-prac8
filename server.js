@@ -8,6 +8,7 @@ const bookingController = require("./Controllers/bookingcontroller");
 const webRoutes = require("./Routes/webroutes"); // Import static file routes
 const apiRoutes = require("./Routes/apiroutes"); // Import API routes
 const bookingRoutes = require("./Routes/bookings");
+const reviewRoutes = require("./Routes/reviews"); // Import review routes
 
 const http = require("http");
 const socketIo = require("socket.io");
@@ -19,6 +20,7 @@ const port = 3040;
 
 // Middleware
 app.use(bodyParser.json());
+app.use(express.urlencoded({ extended: true }));
 
 // Serve static files
 app.use(express.static(path.join(__dirname, "public")));
@@ -28,6 +30,8 @@ app.use(express.static(path.join(__dirname, "Views")));
 app.use("/", webRoutes); // Serve static file routes
 app.use("/api", apiRoutes); // Serve API routes
 app.use("/api2", bookingRoutes);
+app.use("/reviews", reviewRoutes); // Review-related routes
+
 
 // Socket.io setup
 io.on("connection", (socket) => {
