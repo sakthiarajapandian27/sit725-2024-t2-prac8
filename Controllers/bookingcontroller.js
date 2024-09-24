@@ -116,8 +116,7 @@ const getSortedBookings = async (req, res) => {
       res.status(500).json({ error: 'Failed to retrieve bookings' });
   }
 };
-
-    
+   
 module.exports = {
     createBooking,
     getBookings,
