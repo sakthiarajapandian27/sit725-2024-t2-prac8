@@ -99,7 +99,7 @@ const updateBooking = async (req, res) => {
     }
 };
 
-
+//this is a function to get sorted booking
 const getSortedBookings = async (req, res) => {
   const { sort } = req.query;
   
