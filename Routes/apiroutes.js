@@ -2,6 +2,7 @@
 const express = require('express');
 const router = express.Router();
 const bookingController = require('../Controllers/bookingcontroller');
+const searchController = require('../Controllers/searchcontroller');
 const asyncHandler = require('../Utils/asyncHandler');
 
 // API routes for bookings
@@ -12,5 +13,7 @@ router.put('/bookings/:name', bookingController.updateBooking);
 router.delete('/bookings/:name', bookingController.deleteBooking);
 router.get('/bookings', bookingController.getSortedBookings);
 
+//search route
+router.get('/search', searchController.searchdogsitter); 
 
 module.exports = router;
