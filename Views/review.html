@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Review Dog Walker</title>
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link type="text/css" rel="stylesheet" href="./css/materialize.min.css" media="screen,projection"/>
+  <link rel="stylesheet" href="./css/materialize.min.css">
+  <style>
+    .navy-blue {
+      background-color: #2d807e !important;
+    }
+    .white-text {
+      color: #ffffff !important;
+    }
+    .container {
+      margin-top: 30px;
+    }
+    .form-container {
+      background-color: #fff;
+      padding: 30px;
+      border-radius: 8px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+    .form-title {
+      color: #2d807e;
+    }
+    .reviews-section {
+      margin-top: 40px;
+    }
+    .reviews-section h2 {
+      color: #2d807e;
+    }
+  </style>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+</head>
+<body>
+
+  <!-- Navbar -->
+  <nav>
+    <div class="nav-wrapper navy-blue">
+      <a href="/" class="brand-logo">PawFinders</a>
+      <ul id="nav-mobile" class="right hide-on-med-and-down">
+        <li><a href="/">Home</a></li>
+        <li><a href="galery.html">Gallery</a></li>
+        <li><a href="bookings.html">View Booking</a></li>
+        <li><a href="services.html">Services</a></li>
+        <li><a href="about.html">About Us</a></li>
+        <li><a>Contact Us</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <div class="container">
+    <div class="row">
+      <div class="col s12 m8 offset-m2 form-container">
+        <h4 class="center-align form-title">Review Your Dog Walker</h4>
+        <form id="reviewForm">
+          <div class="input-field">
+            <label for="sitterName">Dog Walker's Name</label>
+            <input type="text" id="sitterName" name="sitterName" required>
+          </div>
+          <div class="input-field">
+            <label for="rating">Rating (1-5)</label>
+            <input type="number" id="rating" name="rating" min="1" max="5" required>
+          </div>
+          <div class="input-field">
+            <label for="comment">Comment</label>
+            <textarea id="comment" name="comment" class="materialize-textarea" rows="4" required></textarea>
+          </div>
+          <div class="input-field center-align" style="margin-top: 20px;">
+            <button class="btn navy-blue white-text waves-effect waves-light" type="submit">Submit Review</button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <div class="row reviews-section">
+      <div class="col s12 m8 offset-m2">
+        <h5 class="center-align">Past Reviews</h5>
+        <div id="reviewsContainer" class="card-panel">
+          <!-- Past reviews will be displayed here -->
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Import jQuery and Materialize JS -->
+  <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+  <script type="text/javascript" src="./js/materialize.min.js"></script>
+  <script src="./js/review.js"></script> <!-- Moved to the bottom -->
+  
+  <!-- Footer -->
+  <footer class="page-footer navy-blue">
+    <div class="container">
+      <div class="row">
+        <div class="col l6 s12">
+          <h5 class="white-text">PawFinders</h5>
+          <p class="grey-text text-lighten-4">A Friendly Pet Service</p>
+        </div>
+        <div class="col l4 offset-l2 s12">
+          <h5 class="white-text">Company</h5>
+          <ul>
+            <li><a class="grey-text text-lighten-3" href="#!">About Us</a></li>
+            <li><a class="grey-text text-lighten-3" href="#!">Gallery</a></li>
+            <li><a class="grey-text text-lighten-3" href="#!">Contact Us</a></li>
+            <li><a class="grey-text text-lighten-3" href="#!">Leadership</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="footer-copyright">
+      <div class="container">
+        © 2024 Copyright Text
+      </div>
+    </div>
+  </footer>
+</body>
+</html>
