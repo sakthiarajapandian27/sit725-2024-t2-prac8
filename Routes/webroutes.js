@@ -28,4 +28,9 @@ router.get('/services', (req, res) => {
     res.sendFile(path.join(__dirname, '..', 'Views', 'services.html'));
 });
 
+// Route to serve search.html
+router.get('/search', (req, res) => {
+    res.sendFile(path.join(__dirname, '..', 'Views', 'searchUI/findsitter.html'));
+});
+
 module.exports = router;

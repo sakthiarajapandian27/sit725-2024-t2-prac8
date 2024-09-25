@@ -2,7 +2,7 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
-const { runDBConnection } = require('./Models/bookingmodel');
+const { connectDB } = require('./public/js/DBConnection');
 const path = require('path');
 const bookingController = require('./Controllers/bookingcontroller');
 const webRoutes = require('./Routes/webroutes'); // Import static file routes
@@ -39,10 +39,10 @@ io.on('connection', (socket) => {
   });
 });
 
-// Connect to MongoDB
+// Main server function
 const runServer = async () => {
   try {
-    await runDBConnection(); // Connect to MongoDB
+    await connectDB(); // Centralized DB connection
     console.log('Server is running on port', port);
 
     // Test MongoDB Connection
@@ -55,10 +55,8 @@ const runServer = async () => {
       }
     };
 
-    // Ensure the test function is called only after successful connection
     mongoose.connection.once('open', () => {
-      console.log('MongoDB connection established');
-      testConnection(); // Call the test function
+      testConnection(); 
     });
 
     server.listen(port, () => {
