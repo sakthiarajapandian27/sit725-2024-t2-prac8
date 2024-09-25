@@ -8,17 +8,18 @@
       href="https://fonts.googleapis.com/icon?family=Material+Icons"
       rel="stylesheet"
     />
+
     <link
       type="text/css"
       rel="stylesheet"
       href="css/materialize.min.css"
       media="screen,projection"
     />
-    <link type="text/css" rel="stylesheet" href="css/bookingpage.css" />
+    <link rel="stylesheet" href="css/bookingpage.css" />
   </head>
   <body>
     <header class="navy-blue">
-      <h5>PawFinders</h1>
+      <h5>PawFinders</h5>
     </header>
 
     <div class="container">
@@ -34,10 +35,19 @@
       </div>
     </div>
 
+    <!-- Notification popup -->
+    <div id="notification" class="notification-popup">
+      <span class="close-btn" onclick="closeNotification()">&times;</span>
+      <p>You have a notification!</p>
+    </div>
+
     <footer class="navy-blue">
       <p>&copy; 2024 PawFinders</p>
     </footer>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script
+      type="text/javascript"
+      src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"
+    ></script>
     <script type="text/javascript" src="js/materialize.min.js"></script>
     <script
       src="https://cdn.socket.io/4.7.5/socket.io.min.js"
