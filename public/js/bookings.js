@@ -1,3 +1,14 @@
+//socket io
+const socket = io();
+socket.on("connection", () => {
+  console.log("Connected to Socket io");
+});
+
+socket.on("Transaction", (data) => {
+  console.log(data.message);
+  showNotification();
+});
+
 const updateBookingsLayout = (bookings) => {
   const cardsContainer = document.getElementById("cardsContainer");
   let userId = window.location.search.replace("?", "").split("=")?.[1] || 1;
@@ -40,6 +51,8 @@ const updateBookingsLayout = (bookings) => {
 const handleConfirm = (booking, cardElement) => {
   updateBookingConfirmation(1, booking._id, true);
   cardElement.remove();
+  let userId = booking.ownerId;
+  socket.emit("Transaction", { userId });
 };
 
 function handleDecline(booking, cardElement) {
@@ -143,6 +156,21 @@ const getDate = (dateTimeStr) => {
   const dateObj = new Date(dateTimeStr);
   const datePart = dateObj.toISOString().split("T")[0];
   return datePart;
+};
+
+const showNotification = () => {
+  var notification = document.getElementById("notification");
+  notification.classList.add("show");
+
+  // Hide the notification after 5 seconds
+  setTimeout(function () {
+    notification.classList.remove("show");
+  }, 5000);
+};
+
+const closeNotification = () => {
+  var notification = document.getElementById("notification");
+  notification.classList.remove("show");
 };
 
 $(document).ready(() => {
