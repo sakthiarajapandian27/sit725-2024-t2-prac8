@@ -2,7 +2,7 @@
 const express = require("express");
 const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
-const { runDBConnection } = require("./Models/bookingmodel");
+const { connectDB } = require("./public/js/DBConnection");
 const path = require("path");
 const bookingController = require("./Controllers/bookingcontroller");
 const webRoutes = require("./Routes/webroutes"); // Import static file routes
@@ -10,13 +10,13 @@ const apiRoutes = require("./Routes/apiroutes"); // Import API routes
 const bookingRoutes = require("./Routes/bookings");
 const reviewRoutes = require("./Routes/reviews"); // Import review routes
 
-const http = require("http");
-const socketIo = require("socket.io");
-
 const app = express();
-const server = http.createServer(app); // Create an HTTP server
-const io = socketIo(server); // Attach socket.io to the server
 const port = 3040;
+
+const socket = require("socket.io");
+const http = require("http");
+const server = http.createServer(app);
+const io = socket(server);
 
 // Middleware
 app.use(bodyParser.json());
@@ -33,23 +33,25 @@ app.use("/api2", bookingRoutes);
 app.use("/reviews", reviewRoutes); // Review-related routes
 
 
-// Socket.io setup
+// Socket setup
 io.on("connection", (socket) => {
-  console.log("A user connected");
+  console.log("user connected");
 
-  // Example: Emit a message to the connected client
-  socket.emit("message", "Welcome to the PawFinders Service Booking!");
-
-  // Handle disconnection
   socket.on("disconnect", () => {
     console.log("User disconnected");
   });
+
+  socket.on("Transaction", (data) => {
+    socket.broadcast.emit("Transaction", {
+      message: "You have a new message",
+    });
+  });
 });
 
-// Connect to MongoDB
+// Main server function
 const runServer = async () => {
   try {
-    await runDBConnection(); // Connect to MongoDB
+    await connectDB(); // Centralized DB connection
     console.log("Server is running on port", port);
 
     // Test MongoDB Connection
@@ -64,10 +66,8 @@ const runServer = async () => {
       }
     };
 
-    // Ensure the test function is called only after successful connection
     mongoose.connection.once("open", () => {
-      console.log("MongoDB connection established");
-      testConnection(); // Call the test function
+      testConnection();
     });
 
     server.listen(port, () => {
