@@ -129,6 +129,7 @@ function addToHistory(item) {
       <div class="card-info">Date: ${date}</div>
       <div class="card-info">Time: ${time}</div>
       <div class="card-info">Location: ${item.address}</div>
+      <a href="review.html" class="review-button">Leave a Review</a>
   `;
 
   // Append the new history card to the history container
