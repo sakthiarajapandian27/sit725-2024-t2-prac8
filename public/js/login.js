@@ -4,9 +4,9 @@ $(document).ready(function() {
 
         const username = $('#username').val();
         const password = $('#password').val();
-
+        
         $.ajax({
-            url: '/api/login',
+            url: '/login',
             type: 'POST',
             contentType: 'application/json',
             data: JSON.stringify({
@@ -16,7 +16,7 @@ $(document).ready(function() {
             success: function(response) {
                  if (response.message === "successful") {
                     localStorage.setItem('Admin', JSON.stringify(response.result.firstName));
- 
+                    window.location.href = '/';
                 } else {
                     displayError(response.message);
                 }

@@ -1,6 +1,7 @@
-// const user = require('../Models/');
+const { Registration} = require('../Models/signupModel');
 
 exports.findUser = (email,password)=>{
-    return user.findOne({"email": email,"password": password});
+    return  Registration.findOne({"email": email,"password": password});
+    
 
 }

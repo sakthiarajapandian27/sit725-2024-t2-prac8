@@ -33,8 +33,20 @@ router.get('/search', (req, res) => {
     res.sendFile(path.join(__dirname, '..', 'Views', 'searchUI/findsitter.html'));
 });
 
+//Route to signup page
+router.get('/signUp', (req, res) => {
+    res.sendFile(path.join(__dirname, '..', 'Views', 'signUp.html'));
+});
+//Route to walker signup page
+router.get('/signUpWalker', (req, res) => {
+    res.sendFile(path.join(__dirname, '..', 'Views', 'walkerSignUp.html'));
+});
+//Route to owner signup page
+router.get('/signUpOwner', (req, res) => {
+    res.sendFile(path.join(__dirname, '..', 'Views', 'ownerSignUp.html'));
+});
+
 router.get('/login', (req, res) => {
     res.sendFile(path.join(__dirname, '..', 'Views', 'login.html'));
 });
-
 module.exports = router;

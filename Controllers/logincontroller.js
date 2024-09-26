@@ -1,8 +1,10 @@
 const service = require('../services/login.service');
 
 module.exports = (req, res) => {
-
     if (req.body.email && req.body.password) {
+        // In your controller
+console.log(req.body); // Add this line to log the incoming request body
+
         service.findUser(req.body.email, req.body.password)
             .then((data) => {
                 if (data) {
@@ -16,6 +18,6 @@ module.exports = (req, res) => {
                 res.status(500).json({ message: "Internal Server Error" });
             });
     } else {
-        res.status(400).json({ message: "Invalid Data!!", code: 400 });
-    }
-}
+        res.status(400).json({ message: "Invalid Data!!", code: 400 });
+    }
+};
