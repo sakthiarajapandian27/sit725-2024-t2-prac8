@@ -149,3 +149,29 @@ footer {
   .notification-popup .close-btn:hover {
     color: #bbb;
   }
+
+  .review-button {
+    display: inline-block;
+    position: absolute;
+    bottom: 10px; /* Adjusts the position from the bottom */
+    right: 10px;  /* Aligns the button to the right */
+    padding: 6px 12px;
+    background-color: #2D807E;
+    color: #fff;
+    text-decoration: none;
+    font-size: 12px;
+    border-radius: 5px;
+  }
+  
+  .review-button:hover {
+    background-color: #2D807E;
+  }
+
+  .history {
+    position: relative; /* Required for absolute positioning */
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    background-color: #f9f9f9;
+  }
