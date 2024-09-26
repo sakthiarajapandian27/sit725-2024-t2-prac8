@@ -9,6 +9,7 @@ const webRoutes = require("./Routes/webroutes"); // Import static file routes
 const apiRoutes = require("./Routes/apiroutes"); // Import API routes
 const bookingRoutes = require("./Routes/bookings");
 const reviewRoutes = require("./Routes/reviews"); // Import review routes
+const registrationRoutes = require('./Routes/registration');
 
 const app = express();
 const port = 3040;
@@ -31,6 +32,7 @@ app.use("/", webRoutes); // Serve static file routes
 app.use("/api", apiRoutes); // Serve API routes
 app.use("/user", bookingRoutes);
 app.use("/reviews", reviewRoutes); // Review-related routes
+app.use("/registration", registrationRoutes); // Review-related routes
 
 // Socket setup
 io.on("connection", (socket) => {

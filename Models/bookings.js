@@ -12,7 +12,7 @@ const bookingSchema = new mongoose.Schema({
   confirmed: Boolean,
 });
 
-const Booking = mongoose.model("Booking", bookingSchema);
+const Booking = mongoose.model("Bookings", bookingSchema);
 
 // Find records by user id
 const findByUserId = (userId) => {
