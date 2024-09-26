@@ -33,4 +33,8 @@ router.get('/search', (req, res) => {
     res.sendFile(path.join(__dirname, '..', 'Views', 'searchUI/findsitter.html'));
 });
 
+router.get('/login', (req, res) => {
+    res.sendFile(path.join(__dirname, '..', 'Views', 'login.html'));
+});
+
 module.exports = router;
