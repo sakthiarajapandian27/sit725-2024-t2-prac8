@@ -29,9 +29,8 @@ app.use(express.static(path.join(__dirname, "Views")));
 // Use the routes
 app.use("/", webRoutes); // Serve static file routes
 app.use("/api", apiRoutes); // Serve API routes
-app.use("/api2", bookingRoutes);
+app.use("/user", bookingRoutes);
 app.use("/reviews", reviewRoutes); // Review-related routes
-
 
 // Socket setup
 io.on("connection", (socket) => {
