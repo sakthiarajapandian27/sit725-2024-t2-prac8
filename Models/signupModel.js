@@ -8,6 +8,7 @@ const registrationSchema = new mongoose.Schema({
   suburb: String,
   postalCode: String,
   password: String,
+  type: String,
 });
 
 const Registration = mongoose.model("Registration", registrationSchema);

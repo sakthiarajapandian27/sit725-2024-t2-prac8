@@ -63,6 +63,22 @@ const createNewWalkerRegistration = async (req, res) => {
   }
 };
 
+const getWalkerProfile = async (req, res) => {
+  const userId = req.params.userId;
+
+  try {
+    const user = await Walker.find({ _id: userId });
+    if (!user) {
+      return res.status(404).json({ error: "Failed to fetch specific user" });
+    }
+    res.status(200).json(bookings);
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ error: "Failed to fetch specific booking2" });
+  }
+};
+
 module.exports = {
   createNewWalkerRegistration,
+  getWalkerProfile,
 };

@@ -1,13 +1,15 @@
 $(document).ready(function () {
-  // Example data, replace with actual values as needed
-  $("#firstName").text("John");
-  $("#lastName").text("Doe");
-  $("#phone").text("+1234567890");
-  $("#email").text("john.doe@example.com");
-  $("#address").text("123 Main St");
-  $("#suburb").text("Springfield");
-  $("#postalCode").text("12345");
-  $("#password").text("********"); // mask password
+  const profileData = JSON.parse(localStorage.getItem("user"));
+
+  if (profileData) {
+    $("#firstName").text(profileData.firstName);
+    $("#lastName").text(profileData.lastName);
+    $("#phone").text(profileData.phone);
+    $("#email").text(profileData.email);
+    $("#address").text(profileData.address);
+    $("#suburb").text(profileData.suburb);
+    $("#postalCode").text(profileData.postalCode);
+  }
 
   // Click event for Leave a Review button
   $("#review").click(function () {

@@ -13,6 +13,7 @@ $(document).ready(function () {
       suburb: $("#suburb").val(),
       postalCode: $("#postal_code").val(),
       password: $("#password").val(),
+      type: "OWNER",
     };
 
     $.ajax({
@@ -21,8 +22,10 @@ $(document).ready(function () {
       data: JSON.stringify(ownerData),
       contentType: "application/json",
       success: function (response) {
+        console.log(response);
         alert("Owner registration successful!");
-        $("#registrationForm")[0].reset(); // Clear the form fields
+        localStorage.setItem("user", JSON.stringify(response));
+        window.location.href = "/profile.html";
       },
       error: function (error) {
         alert("Error saving owner registration");
@@ -49,6 +52,7 @@ $(document).ready(function () {
       postalCode: $("#postal_code").val(),
       service: $("#service").val(),
       password: $("#password").val(),
+      type: "WALKER",
     };
     $.ajax({
       type: "POST",
@@ -57,10 +61,7 @@ $(document).ready(function () {
       contentType: "application/json",
       success: function (response) {
         alert("Walker registration successful!");
-        $("#registrationForm")[0].reset(); // Clear the form fields
-        $("#document_number_field").hide(); // Hide document number field after submission
-
-        // Redirect to the profile page
+        localStorage.setItem("user", JSON.stringify(response));
         window.location.href = "/profile.html";
       },
       error: function (error) {
