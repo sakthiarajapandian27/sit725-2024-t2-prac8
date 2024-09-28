@@ -8,9 +8,9 @@ const bookingSchema = new mongoose.Schema({
   sitterName: String,
   date: Date,
   address: String,
-  services: String,
   confirmation: Boolean,
   confirmed: Boolean,
+  service: String,
 });
 
 const Booking = mongoose.model("Bookings", bookingSchema);
@@ -38,7 +38,7 @@ const save = (bookingData) => {
     sitterName: bookingData.sitterName,
     date: bookingData.date,
     address: bookingData.address,
-    service: bookingData.service,
+    service: bookingData.services,
     confirmation: false,
     confirmed: false,
   });

@@ -54,5 +54,5 @@ document
 const contactWalker = (result, location) => {
   localStorage.setItem("selectedSitter", JSON.stringify(result));
   localStorage.setItem("location", JSON.stringify(location));
-  window.location.href = "./profile.html";
+  window.location.href = "./walkerProfile.html";
 };
