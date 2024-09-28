@@ -1,4 +1,4 @@
-const {Walker} = require('../Models/signupModelWalker')
+const { Walker } = require("../Models/signupModelWalker");
 
 const createNewWalkerRegistration = async (req, res) => {
   const {
@@ -7,7 +7,7 @@ const createNewWalkerRegistration = async (req, res) => {
     phone,
     email,
     idProof,
-    document_number, 
+    document_number,
     certification,
     otherCertification,
     address,
@@ -29,9 +29,8 @@ const createNewWalkerRegistration = async (req, res) => {
     !service ||
     !password
   ) {
-    return res.status(400).json({ error: 'All fields are required' });
+    return res.status(400).json({ error: "All fields are required" });
   }
-
 
   // Create a new walker registration instance
   const newWalkerRegistration = new Walker({
@@ -40,7 +39,7 @@ const createNewWalkerRegistration = async (req, res) => {
     phone,
     email,
     idProof,
-    document_number, 
+    document_number,
     certification,
     otherCertification,
     address,
@@ -51,14 +50,16 @@ const createNewWalkerRegistration = async (req, res) => {
   });
 
   try {
-    await newWalkerRegistration.save();
-    res.status(201).json(newWalkerRegistration);
+    const saveduser = await newWalkerRegistration.save();
+    res.status(201).json(saveduser);
   } catch (error) {
-    console.error('Error saving registration:', error);
-    if (error.name === 'ValidationError') {
-      return res.status(400).json({ error: 'Validation failed', details: error.errors });
+    console.error("Error saving registration:", error);
+    if (error.name === "ValidationError") {
+      return res
+        .status(400)
+        .json({ error: "Validation failed", details: error.errors });
     }
-    res.status(500).json({ error: 'Failed to save registration' });
+    res.status(500).json({ error: "Failed to save registration" });
   }
 };
 

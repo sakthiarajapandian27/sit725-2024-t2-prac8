@@ -28,8 +28,24 @@ const findByIdAndUpdate = (id, confirmation) => {
   );
 };
 
+const save = (bookingData) => {
+  const obj = new Booking({
+    ownerId: bookingData.ownerId,
+    sitterId: bookingData.sitterId,
+    ownerName: bookingData.ownerName,
+    sitterName: bookingData.sitterName,
+    date: bookingData.date,
+    address: bookingData.address,
+    confirmation: false,
+    confirmed: false,
+  });
+
+  return obj.save();
+};
+
 module.exports = {
   Booking,
   findByUserId,
   findByIdAndUpdate,
+  save,
 };

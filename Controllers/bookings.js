@@ -60,7 +60,17 @@ const confirmBooking = async (req, res) => {
 //   }
 // };
 
+const createBooking = async (req, res) => {
+  try {
+    const newBooking = await booking.save(req.body);
+    res.status(201).json(newBooking);
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ error: error });
+  }
+};
 module.exports = {
   getBookingByUserId,
   confirmBooking,
+  createBooking,
 };
