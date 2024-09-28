@@ -39,7 +39,9 @@ document
         // Add event listeners to each contact button
         const contactButtons = resultsDiv.querySelectorAll(".contact-button");
         contactButtons.forEach((button, index) => {
-          button.addEventListener("click", () => contactWalker(results[index]));
+          button.addEventListener("click", () =>
+            contactWalker(results[index], location)
+          );
         });
       }
     } catch (err) {
@@ -49,7 +51,8 @@ document
     }
   });
 
-const contactWalker = (result) => {
-  localStorage.setItem("user", JSON.stringify(result));
+const contactWalker = (result, location) => {
+  localStorage.setItem("selectedSitter", JSON.stringify(result));
+  localStorage.setItem("location", JSON.stringify(location));
   window.location.href = "./profile.html";
 };

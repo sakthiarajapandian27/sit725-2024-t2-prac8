@@ -15,6 +15,7 @@ const createNewWalkerRegistration = async (req, res) => {
     postalCode,
     service,
     password,
+    type,
   } = req.body;
 
   // Ensure all required fields are present
@@ -47,6 +48,7 @@ const createNewWalkerRegistration = async (req, res) => {
     postalCode,
     services: Array.isArray(service) ? service : [service], // Ensure service is always an array
     password,
+    type,
   });
 
   try {

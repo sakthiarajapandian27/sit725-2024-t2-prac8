@@ -22,9 +22,8 @@ $(document).ready(function () {
       data: JSON.stringify(ownerData),
       contentType: "application/json",
       success: function (response) {
-        console.log(response);
         alert("Owner registration successful!");
-        localStorage.setItem("user", JSON.stringify(response));
+        sessionStorage.setItem("user", JSON.stringify(response));
         window.location.href = "/profile.html";
       },
       error: function (error) {
@@ -61,7 +60,7 @@ $(document).ready(function () {
       contentType: "application/json",
       success: function (response) {
         alert("Walker registration successful!");
-        localStorage.setItem("user", JSON.stringify(response));
+        sessionStorage.setItem("user", JSON.stringify(response));
         window.location.href = "/profile.html";
       },
       error: function (error) {

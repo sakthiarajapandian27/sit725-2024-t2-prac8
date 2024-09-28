@@ -10,6 +10,7 @@ const createRegistration = async (req, res) => {
     suburb,
     postalCode,
     password,
+    type,
   } = req.body;
 
   if (
@@ -34,11 +35,12 @@ const createRegistration = async (req, res) => {
     suburb,
     postalCode,
     password,
+    type,
   });
 
   try {
-    await newRegistration.save();
-    res.status(201).json(newRegistration);
+    const user = await newRegistration.save();
+    res.status(201).json(user);
   } catch (error) {
     console.error("Error saving registration:", error);
     if (error.name === "ValidationError") {

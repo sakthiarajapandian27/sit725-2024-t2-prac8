@@ -1,5 +1,18 @@
 $(document).ready(function () {
-  const profileData = JSON.parse(localStorage.getItem("user"));
+  const reviewButton = document.getElementById("review");
+  const contactButton = document.getElementById("contact");
+
+  const profileData = JSON.parse(sessionStorage.getItem("user"));
+  const sitterData = JSON.parse(localStorage.getItem("selectedSitter"));
+  console.log(sitterData);
+  let isVisible = sitterData != null || profileData.type == "WALKER";
+
+  if (!isVisible) {
+    reviewButton.style.display = "none"; // Hide the button
+    contactButton.style.display = "none";
+  }
+
+  const location = JSON.parse(localStorage.getItem("location"));
 
   if (profileData) {
     $("#firstName").text(profileData.firstName);
@@ -18,19 +31,26 @@ $(document).ready(function () {
 
   // Click event for Contact button
   $("#contact").click(function () {
+    const ownerData = profileData;
+
     const booking = {
-      ownerId: "O001",
-      sitterId: "S001",
-      ownerName: "XX",
-      sitterName: "YY",
-      date: "2024-02-09",
-      address: "Clayton",
+      ownerId: ownerData._id,
+      sitterId: sitterData._id,
+      ownerName: ownerData.firstName + " " + ownerData.lastName,
+      sitterName: sitterData.firstName + " " + sitterData.lastName,
+      date: new Date(),
+      address: location,
+      services:
+        sitterData.services && sitterData.services.length > 0
+          ? sitterData.services[0]
+          : "Dog Walking",
     };
     saveBooking(booking);
   });
 });
 
 const saveBooking = (obj) => {
+  const profileData = JSON.parse(sessionStorage.getItem("user"));
   $.ajax({
     type: "POST",
     url: "/user/bookings/save",
@@ -39,7 +59,7 @@ const saveBooking = (obj) => {
     success: function (response) {
       console.log(response);
       // Redirect to the profile page
-      window.location.href = "http://localhost:3040/user?userid=S001";
+      window.location.href = `http://localhost:3040/user?userid=${profileData._id}`;
     },
     error: function (error) {
       console.error("Error:", error);

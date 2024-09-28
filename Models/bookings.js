@@ -8,6 +8,7 @@ const bookingSchema = new mongoose.Schema({
   sitterName: String,
   date: Date,
   address: String,
+  services: String,
   confirmation: Boolean,
   confirmed: Boolean,
 });
@@ -29,6 +30,7 @@ const findByIdAndUpdate = (id, confirmation) => {
 };
 
 const save = (bookingData) => {
+  console.log(bookingData);
   const obj = new Booking({
     ownerId: bookingData.ownerId,
     sitterId: bookingData.sitterId,
@@ -36,6 +38,7 @@ const save = (bookingData) => {
     sitterName: bookingData.sitterName,
     date: bookingData.date,
     address: bookingData.address,
+    service: bookingData.service,
     confirmation: false,
     confirmed: false,
   });
