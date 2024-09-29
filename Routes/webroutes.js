@@ -45,4 +45,8 @@ router.get("/signUpWalker", (req, res) => {
 router.get("/signUpOwner", (req, res) => {
   res.sendFile(path.join(__dirname, "..", "Views", "ownerSignUp.html"));
 });
+
+router.get('/login', (req, res) => {
+    res.sendFile(path.join(__dirname, '..', 'Views', 'login.html'));
+});
 module.exports = router;
