@@ -7,15 +7,13 @@ $(document).ready(function () {
 
   const location = JSON.parse(localStorage.getItem("location"));
 
-  if (profileData) {
-    $("#firstName").text(sitterData.firstName);
-    $("#lastName").text(sitterData.lastName);
-    $("#phone").text(sitterData.phone);
-    $("#email").text(sitterData.email);
-    $("#address").text(sitterData.address);
-    $("#suburb").text(sitterData.suburb);
-    $("#postalCode").text(sitterData.postalCode);
-  }
+  $("#firstName").text(sitterData.firstName);
+  $("#lastName").text(sitterData.lastName);
+  $("#phone").text(sitterData.phone);
+  $("#email").text(sitterData.email);
+  $("#address").text(sitterData.address);
+  $("#suburb").text(sitterData.suburb);
+  $("#postalCode").text(sitterData.postalCode);
 
   // Click event for Leave a Review button
   $("#review").click(function () {
