@@ -30,7 +30,6 @@ const findByIdAndUpdate = (id, confirmation) => {
 };
 
 const save = (bookingData) => {
-  console.log(bookingData);
   const obj = new Booking({
     ownerId: bookingData.ownerId,
     sitterId: bookingData.sitterId,
@@ -46,9 +45,14 @@ const save = (bookingData) => {
   return obj.save();
 };
 
+const findOneAndDelete = (bookingId) => {
+  Booking.findByIdAndDelete(bookingId);
+};
+
 module.exports = {
   Booking,
   findByUserId,
   findByIdAndUpdate,
   save,
+  findOneAndDelete,
 };

@@ -18,6 +18,7 @@ const updateBookingsLayout = (bookings) => {
   }
   const cardsContainer = document.getElementById("cardsContainer");
   let user = JSON.parse(sessionStorage.getItem("user"));
+
   bookings.forEach((item) => {
     if (!item.confirmed && user?.type == "WALKER") {
       const card = document.createElement("div");
@@ -57,12 +58,12 @@ const updateBookingsLayout = (bookings) => {
 const handleConfirm = (booking, cardElement) => {
   updateBookingConfirmation(1, booking._id, true);
   cardElement.remove();
-  let userId = booking.ownerId;
-  socket.emit("Transaction", { userId });
+  let notificateUserId = booking.ownerId;
+  socket.emit("Transaction", { notificateUserId });
 };
 
 function handleDecline(booking, cardElement) {
-  updateBookingConfirmation(1, booking._id, false);
+  deleteBooking(booking._id);
   cardElement.remove();
 }
 
@@ -104,6 +105,22 @@ const updateBookingConfirmation = (userId, bookingId, confirmation) => {
   });
 };
 
+const deleteBooking = (bookingId) => {
+  $.ajax({
+    url: `user/bookings/${bookingId}`,
+    type: "DELETE",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    success: function (data) {
+      console.log("deleted");
+    },
+    error: function (error) {
+      console.error("Error updating bookings:", error);
+    },
+  });
+};
+
 function addToHistory(item) {
   const historyContainer = document.getElementById("historyContainer");
 
@@ -116,7 +133,7 @@ function addToHistory(item) {
   let user = null;
   //Todo: remove once the profile is merged
   let userObj = JSON.parse(sessionStorage.getItem("user"));
-  if (userObj?.type == "WALKER") {
+  if (userObj?.type == "OWNER") {
     user = `Sitter Name: ${item.sitterName}`;
   } else {
     user = `Owner Name: ${item.ownerName}`;
@@ -134,7 +151,9 @@ function addToHistory(item) {
     ${
       item.confirmation && item.confirmed
         ? `<span class="confirmation-label">Confirmed</span>`
-        : `<span class="pending-label">Pending Confirmation</span>`
+        : !item.confirmed && userObj?.type === "OWNER"
+        ? `<span class="pending-label">Pending Confirmation</span>`
+        : ``
     }
 `;
 
