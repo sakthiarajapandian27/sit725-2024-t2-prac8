@@ -188,10 +188,10 @@ const showNotification = () => {
   var notification = document.getElementById("notification");
   notification.classList.add("show");
 
-  // Hide the notification after 5 seconds
+  // Hide the notification after 50 seconds
   setTimeout(function () {
     notification.classList.remove("show");
-  }, 5000);
+  }, 50000);
 };
 
 const closeNotification = () => {
