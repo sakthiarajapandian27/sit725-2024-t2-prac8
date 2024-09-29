@@ -253,6 +253,42 @@
         background-color: #225f5c;
     }
 
+    /* Style for the clickable search result links */
+.search-result-link {
+    text-decoration: none; /* Remove underline from links */
+    color: inherit; /* Ensure the text color remains the same */
+}
+
+/* Style for each result card (the clickable box) */
+.result-card {
+    background-color: #fff;
+    padding: 20px;
+    margin-bottom: 15px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s, transform 0.3s;
+    cursor: pointer; /* Make it look clickable */
+}
+
+/* Add hover effect to highlight the card */
+.result-card:hover {
+    background-color: #f0f0f0;
+    transform: scale(1.02); /* Slight zoom effect */
+}
+
+/* Style the h3 and p elements inside the result card */
+.result-card h3 {
+    margin: 0;
+    font-size: 1.5em;
+}
+
+.result-card p {
+    margin: 5px 0;
+    font-size: 1.1em;
+    color: #555;
+}
+
+
     /* Footer styling */
     footer {
     width: 100%;

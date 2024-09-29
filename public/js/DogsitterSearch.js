@@ -19,12 +19,14 @@ document.getElementById('searchdogsitter').addEventListener('click', async (even
             resultsDiv.innerHTML = '<p>No results found.</p>';
         } else {
             resultsDiv.innerHTML = results.map(result => `
-                <div>
+                <a href="/services.html?id=${result._id}" class="search-result-link">
+                <div class="result-card">
                     <h3>${result.firstName} ${result.lastName}</h3>
                     <p>${result.address}, ${result.suburb}, ${result.postalCode}</p>
                     <p>Email: ${result.email}</p>
                     <p>Phone: ${result.phone}</p>
                 </div>
+                </a>
             `).join('');
         }
     } catch (err) {
