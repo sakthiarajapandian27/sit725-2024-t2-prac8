@@ -20,15 +20,14 @@ const updateBookingsLayout = (bookings) => {
 
       card.classList.add("card");
 
-      // const time = convertTo24Hour(item.date);
-      // const date = getDate(item.date);
+      const date = getDate(item.date);
       let user = null;
 
       // Create card content
       card.innerHTML = `
     <div class="card-title">${item.service} on ${date}</div>
     <div class="card-info">Owner Name: ${item.ownerName}</div>
-    <div class="card-info">Date: ${item.date}</div>
+    <div class="card-info">Date: ${date}</div>
     <div class="card-info">Time: ${item.time}</div>
     <div class="card-info">Location: ${item.address}</div>
     <div class="card-buttons">
@@ -123,7 +122,7 @@ function addToHistory(item) {
   const historyCard = document.createElement("div");
   historyCard.classList.add("history");
 
-  const time = convertTo24Hour(item.date);
+  const time = item.time;
   const date = getDate(item.date);
   let user = null;
   //Todo: remove once the profile is merged
