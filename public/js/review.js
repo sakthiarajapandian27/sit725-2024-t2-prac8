@@ -35,11 +35,26 @@ async function loadReviews() {
     reviewSection.innerHTML = ""; // Clear existing reviews
 
     reviews.forEach((review) => {
-        const reviewDiv = document.createElement("div");
-        reviewDiv.innerHTML = `<strong>${review.sitterName}</strong> (Rating: ${review.rating})<br>${review.comment}`;
-        reviewSection.appendChild(reviewDiv);
+        const reviewCard = document.createElement("div");
+        reviewCard.classList.add("card-panel", "review-card");
+
+        reviewCard.innerHTML = `
+            <div class="review-header">
+                <strong>Dog Walker:</strong> ${review.sitterName}
+            </div>
+            <div class="review-rating">
+                <strong>Rating:</strong> ${review.rating}/5
+            </div>
+            <div class="review-comment">
+                <strong>Comment:</strong> ${review.comment}
+            </div>
+        `;
+
+        // reviewSection.appendChild(reviewCard);
+        reviewSection.insertBefore(reviewCard, reviewSection.firstChild);
     });
 }
+
 
 // Call loadReviews when the page loads
 window.onload = loadReviews;
