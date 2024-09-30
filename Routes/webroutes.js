@@ -8,6 +8,10 @@ router.get("/", (req, res) => {
   res.sendFile(path.join(__dirname, "..", "Views", "index.html"));
 });
 
+router.get('/dashboard', (req, res) => {
+    res.sendFile(path.join(__dirname, '..', 'Views', 'dashboard.html'));
+});
+
 // Route to serve about.html
 router.get("/about", (req, res) => {
   res.sendFile(path.join(__dirname, "..", "Views", "about.html"));
@@ -46,7 +50,5 @@ router.get("/signUpOwner", (req, res) => {
   res.sendFile(path.join(__dirname, "..", "Views", "ownerSignUp.html"));
 });
 
-router.get('/login', (req, res) => {
-    res.sendFile(path.join(__dirname, '..', 'Views', 'login.html'));
-});
+
 module.exports = router;

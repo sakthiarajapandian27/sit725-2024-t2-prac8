@@ -1,33 +1,51 @@
-$(document).ready(function() {
-    $('#loginForm').submit(function(event) {
-        event.preventDefault(); 
+const socket = io();
+function getRadioValue() {
+  const selectedValue = document.querySelector(
+    'input[name="userType"]:checked'
+  ).id;
+  console.log("Selected user type: " + selectedValue);
+}
 
-        const username = $('#username').val();
-        const password = $('#password').val();
-        
-        $.ajax({
-            url: '/login',
-            type: 'POST',
-            contentType: 'application/json',
-            data: JSON.stringify({
-                email: username,
-                password: password
-            }),
-            success: function(response) {
-                 if (response.message === "successful") {
-                    localStorage.setItem('Admin', JSON.stringify(response.result.firstName));
-                    window.location.href = '/';
-                } else {
-                    displayError(response.message);
-                }
-            },
-            error: function(error) {
-                console.log('Error:', error);
-            }
-        });
-    });
+$(document).ready(function () {
+  $("#loginForm").submit(function (event) {
+    event.preventDefault();
 
-    function displayError(message) {
-        $('#error-message').text(message).css('color', 'red');
+    const username = $("#username").val();
+    const password = $("#password").val();
+    const selectedType = $('input[name="userType"]:checked').val();
+
+    if (!selectedType) {
+      displayError("Please select whether you are a Dog Walker or Dog Owner.");
+      return;
     }
+
+    $.ajax({
+      url: "/login",
+      type: "POST",
+      contentType: "application/json",
+      data: JSON.stringify({
+        email: username,
+        password: password,
+        type: selectedType,
+      }),
+      success: function (response) {
+        if (response.message === "successful") {
+          sessionStorage.setItem("user", JSON.stringify(response.result));
+          socket.emit("register", response.result._id);
+          window.location.href = "/dashboard";
+          alert("Login Successful");
+        } else {
+          displayError(response.message);
+        }
+      },
+      error: function (error) {
+        console.log("Error:", error);
+        displayError("An error occurred while logging in.");
+      },
+    });
+  });
+
+  function displayError(message) {
+    $("#error-message").text(message).css("color", "red");
+  }
 });

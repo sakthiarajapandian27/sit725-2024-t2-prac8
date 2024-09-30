@@ -1,16 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <!-- Import Materialize CSS -->
   <link href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" rel="stylesheet">
-  <!-- Import Google Icons -->
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-
-  <!-- Import jQuery -->
+  <link rel="stylesheet" href="../public/css/styles.css"> 
+  <link
+    type="text/css"
+    rel="stylesheet"
+    href="css/materialize.min.css"
+    media="screen,projection"
+  />
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
   <!-- Import Materialize JavaScript -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
-  <script type="text/javascript" src="js/signUp.js"></script>
+  <script type="text/javascript" src="js/signUp.js"></script> 
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <meta charset="UTF-8">
   <title>Registration Form in Card</title>
@@ -88,15 +91,39 @@
       top: 10px;
       z-index: 1;
     }
+    body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+}
+
+header, footer {
+    background-color: #2d807e;
+    color: white;
+    text-align: center;
+    padding: 1rem 0;
+}
+
+header {
+    text-align: left;
+    padding-left: 24px;
+}
+
+header > h5 {
+    margin: 0;
+}
+
+footer > p {
+    margin: 0;
+}
   </style>
 </head>
 
 <body>
-  <nav>
-    <div class="nav-wrapper navy-blue">
-      <a href="/" class="brand-logo">PawFinders</a>
-    </div>
-  </nav>
+  <header>
+    <h5>PawFinders</h5>
+</header>
 
   <div class="container">
     <div class="card">
@@ -150,34 +177,8 @@
       </div>
     </div>
   </div>
-
-  <footer class="page-footer navy-blue">
-    <footer class="page-footer navy-blue">
-      <div class="container">
-        <div class="row">
-          <div class="col l6 s12">
-            <h5 class="white-text">PawFinders</h5>
-            <p class="grey-text text-lighten-4">A Friendly Pet Service</p>
-          </div>
-          <div class="col l4 offset-l2 s12">
-            <h5 class="white-text">Company</h5>
-            <ul>
-              <li><a class="grey-text text-lighten-3" href="#!">About Us</a></li>
-              <li><a class="grey-text text-lighten-3" href="#!">Gallery</a></li>
-              <li><a class="grey-text text-lighten-3" href="#!">Contact Us</a></li>
-              <li><a class="grey-text text-lighten-3" href="#!">Leadership</a></li>
-            </ul>
-          </div>
-        </div>
-      </div>
-      <div class="footer-copyright">
-        <div class="container">
-        © 2024 Copyright Text
-        </div>
-      </div>
-    </footer>
-  </footer>
-
-
 </body>
+  <footer class="navy-blue">
+    <p>&copy; 2024 PawFinders</p>
+  </footer>
 </html>

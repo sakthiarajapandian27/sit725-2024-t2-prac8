@@ -1,20 +1,25 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <!-- Import Materialize CSS -->
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" rel="stylesheet">
-    <!-- Import Google Icons -->
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <!-- Import jQuery -->
+    
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <!-- Ensure viewport is set for mobile optimization -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <meta charset="UTF-8">
     <title>Card with Video</title>
-    <link rel="stylesheet" href="styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="../public/css/login.css"> 
+    <link
+      type="text/css"
+      rel="stylesheet"
+      href="css/materialize.min.css"
+      media="screen,projection"
+    />
+    <link rel="stylesheet" href="css/profile.css" />
     <style>
       .navy-blue {
-        background-color: #2d807e !important; /* Navy blue color */
+        background-color: #2d807e; /* Navy blue color */
       }
       .white-text {
         color: #ffffff !important; /* White text color */
@@ -65,58 +70,28 @@
 
     </style>
   </head>
-
   <body>
-    <!-- Materialize JS -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
-    
-    <nav>
-      <div class="nav-wrapper navy-blue">
-        <a href="/" class="brand-logo">PawFinders</a>
-      </div>
-    </nav>
-    <body>
-        <div class="center-align-container">
-            <div>
-              <h3>Who are you?</h3>
-              <div style="padding: 2% 0%;">
-                <a class="waves-effect waves-light btn" style="background-color: #2d807e !important;" href="walkerSignUp.html">Dog Walker/Sitter</a>
-                <a class="waves-effect waves-light btn" style="background-color: #2d807e !important;" href="ownerSignUp.html">Dog Owner</a>
-              </div>
-            </div>
-          </div>
-          
-       
-    </body>
-    <footer class="page-footer navy-blue">
-      <div class="container">
-        <div class="row">
-          <div class="col l6 s12">
-            <h5 class="white-text">PawFinders</h5>
-            <p class="grey-text text-lighten-4">A Friendly Pet Service</p>
-          </div>
-          <div class="col l4 offset-l2 s12">
-            <h5 class="white-text">Company</h5>
-            <ul>
-              <li><a class="grey-text text-lighten-3" href="#">About Us</a></li>
-              <li><a class="grey-text text-lighten-3" href="#">Gallery</a></li>
-              <li><a class="grey-text text-lighten-3" href="#">Contact Us</a></li>
-              <li><a class="grey-text text-lighten-3" href="#">Leadership</a></li>
-            </ul>
-          </div>
-        </div>
-      </div>
-      <div class="footer-copyright">
-        <div class="container">
-          © 2024 Copyright Text
-        </div>
-      </div>
-    </footer>
-
     <script>
       $(document).ready(function(){
         $('.sidenav').sidenav(); 
       });
     </script>
+  <header>
+    <h5>PawFinders</h5>
+</header>
+  
+<div class="center-align-container">
+  <div>
+    <h3>Who are you?</h3>
+    <div style="padding: 2% 0%;">
+      <a class="waves-effect waves-light btn" style="background-color: #2d807e !important;" href="walkerSignUp.html">Dog Walker/Sitter</a>
+      <a class="waves-effect waves-light btn" style="background-color: #2d807e !important;" href="ownerSignUp.html">Dog Owner</a>
+    </div>
+  </div>
+</div>
   </body>
+<footer class="navy-blue">
+    <p>&copy; 2024 PawFinders</p>
+  </footer>
 </html>

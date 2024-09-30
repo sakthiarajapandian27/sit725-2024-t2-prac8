@@ -1,11 +1,6 @@
 //socket io
 const socket = io();
-socket.on("connection", () => {
-  console.log("Connected to Socket io");
-});
-
 socket.on("Transaction", (data) => {
-  console.log(data.message);
   showNotification();
 });
 
@@ -25,7 +20,6 @@ const updateBookingsLayout = (bookings) => {
 
       card.classList.add("card");
 
-      const time = convertTo24Hour(item.date);
       const date = getDate(item.date);
       let user = null;
 
@@ -34,7 +28,7 @@ const updateBookingsLayout = (bookings) => {
     <div class="card-title">${item.service} on ${date}</div>
     <div class="card-info">Owner Name: ${item.ownerName}</div>
     <div class="card-info">Date: ${date}</div>
-    <div class="card-info">Time: ${time}</div>
+    <div class="card-info">Time: ${item.time}</div>
     <div class="card-info">Location: ${item.address}</div>
     <div class="card-buttons">
         <button class="confirm-button" id="confirm"> <span class="material-icons">check_circle</span>Confirm</button>
@@ -50,7 +44,10 @@ const updateBookingsLayout = (bookings) => {
         .addEventListener("click", () => handleDecline(item, card));
       cardsContainer.appendChild(card);
     } else {
-      addToHistory(item);
+      if (user?.type == "OWNER") {
+        addToHistory(item);
+      } else {
+      }
     }
   });
 };
@@ -64,12 +61,14 @@ const handleConfirm = (booking, cardElement) => {
 
 function handleDecline(booking, cardElement) {
   deleteBooking(booking._id);
+  updateBookingConfirmation(1, booking._id, false);
+  socket.emit("Transaction", { notificateUserId });
   cardElement.remove();
 }
 
 const fetchAndDisplayBookings = (userId) => {
   $.ajax({
-    url: `api2/bookings/${userId}`,
+    url: `user/bookings/${userId}`,
     method: "GET",
     success: function (data) {
       updateBookingsLayout(data);
@@ -83,7 +82,7 @@ const fetchAndDisplayBookings = (userId) => {
 const updateBookingConfirmation = (userId, bookingId, confirmation) => {
   userId = window.location.search.replace("?", "").split("=")?.[1] || 1;
   $.ajax({
-    url: `api2/bookings/${userId}`,
+    url: `user/bookings/${userId}`,
     type: "PATCH",
     headers: {
       "Content-Type": "application/json",
@@ -107,7 +106,7 @@ const updateBookingConfirmation = (userId, bookingId, confirmation) => {
 
 const deleteBooking = (bookingId) => {
   $.ajax({
-    url: `user/bookings/${bookingId}`,
+    url: `/user/bookings/${bookingId}`,
     type: "DELETE",
     headers: {
       "Content-Type": "application/json",
@@ -128,7 +127,7 @@ function addToHistory(item) {
   const historyCard = document.createElement("div");
   historyCard.classList.add("history");
 
-  const time = convertTo24Hour(item.date);
+  const time = item.time;
   const date = getDate(item.date);
   let user = null;
   //Todo: remove once the profile is merged
@@ -153,6 +152,8 @@ function addToHistory(item) {
         ? `<span class="confirmation-label">Confirmed</span>`
         : !item.confirmed && userObj?.type === "OWNER"
         ? `<span class="pending-label">Pending Confirmation</span>`
+        : item.confirmed && userObj?.type === "OWNER"
+        ? `<span class="pending-label">Rejected</span>`
         : ``
     }
 `;
@@ -191,7 +192,7 @@ const showNotification = () => {
   // Hide the notification after 50 seconds
   setTimeout(function () {
     notification.classList.remove("show");
-  }, 50000);
+  }, 500000);
 };
 
 const closeNotification = () => {

@@ -1,4 +1,5 @@
 const mongoose = require("mongoose");
+const { ObjectId } = mongoose.Types;
 
 const bookingSchema = new mongoose.Schema({
   bookingId: String,
@@ -7,6 +8,7 @@ const bookingSchema = new mongoose.Schema({
   ownerName: String,
   sitterName: String,
   date: Date,
+  time: String,
   address: String,
   confirmation: Boolean,
   confirmed: Boolean,
@@ -36,6 +38,7 @@ const save = (bookingData) => {
     ownerName: bookingData.ownerName,
     sitterName: bookingData.sitterName,
     date: bookingData.date,
+    time: bookingData.time,
     address: bookingData.address,
     service: bookingData.services,
     confirmation: false,
@@ -46,7 +49,9 @@ const save = (bookingData) => {
 };
 
 const findOneAndDelete = (bookingId) => {
-  Booking.findByIdAndDelete(bookingId);
+  const bookingIdObject = new ObjectId(bookingId);
+
+  Booking.findOneAndDelete({ _id: bookingId });
 };
 
 module.exports = {

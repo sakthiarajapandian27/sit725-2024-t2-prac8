@@ -1,16 +1,24 @@
 <html>
   <head>
     <!--Import Google Icon Font-->
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet"
+    />
     <!--Import materialize.css-->
-    <link type="text/css" rel="stylesheet" href="css/materialize.min.css" media="screen,projection"/>
+    <link
+      type="text/css"
+      rel="stylesheet"
+      href="css/materialize.min.css"
+      media="screen,projection"
+    />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <!-- Include this only in services.html -->
     <script src="js/socket.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.6.1/socket.io.min.js"></script>
 
     <!--Let browser know website is optimized for mobile-->
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
     <style>
       .navy-blue {
@@ -35,7 +43,7 @@
       }
 
       #realTimeUpdates {
-        font-family: 'Arial', sans-serif; /* Change the font family */
+        font-family: "Arial", sans-serif; /* Change the font family */
         font-size: 1.5em; /* Increase font size */
         font-weight: bold; /* Make the font bold */
         color: #2c3e50; /* Change the text color */
@@ -52,64 +60,82 @@
       <div class="nav-wrapper navy-blue">
         <a href="#" class="brand-logo">PawFinders</a>
         <ul id="nav-mobile" class="right hide-on-med-and-down">
-          <li><a href="/">Home</a></li>
+          <li><a href="/dashboard.html">Home</a></li>
           <li><a href="galery.html">Gallery</a></li>
           <li><a href="bookings.html">View Booking</a></li>
           <li><a href="services.html">Services</a></li>
           <li><a href="about.html">About Us</a></li>
-          <li><a href="searchUI/findsitter.html">Find a Sitter</a></li>
+          <li><a href="findsitter.html">Find a Sitter</a></li>
         </ul>
       </div>
     </nav>
-    
+
     <h1>Services</h1>
-    <br>
+    <br />
     <div class="card-container">
       <div class="card">
         <div class="card-image">
-          <img src="src/dog_walker-scaled.jpg" alt="Pack Walk">
+          <img src="src/dog_walker-scaled.jpg" alt="Pack Walk" />
         </div>
         <div class="card-content">
           <span class="card-title">Pack Walk</span>
-          <p>Time: 1 hour <br> Cost: $20</p>
+          <p>
+            Time: 1 hour <br />
+            Cost: $20
+          </p>
         </div>
         <div class="col s12 center-align">
-          <a class="waves-effect waves-light btn click-me-button modal-trigger"
-             data-target="modal1" 
-             data-service="Pack Walk">
-             <i class="material-icons left">auto_fix_high</i>Book Me</a>
+          <a
+            class="waves-effect waves-light btn click-me-button modal-trigger"
+            data-target="modal1"
+            data-service="Pack Walk"
+          >
+            <i class="material-icons left">auto_fix_high</i>Book Me</a
+          >
         </div>
       </div>
 
       <div class="card">
         <div class="card-image">
-          <img src="src/dog_w.jpg" alt="Solo Walk">
+          <img src="src/dog_w.jpg" alt="Solo Walk" />
         </div>
         <div class="card-content">
           <span class="card-title">Solo Walk</span>
-          <p>Time: 1 hour <br> Cost: $15</p>
+          <p>
+            Time: 1 hour <br />
+            Cost: $15
+          </p>
         </div>
         <div class="col s12 center-align">
-          <a class="waves-effect waves-light btn click-me-button modal-trigger"
-             data-target="modal1"
-             data-service="Solo Walk">
-             <i class="material-icons left">auto_fix_high</i>Book Me</a>
+          <a
+            class="waves-effect waves-light btn click-me-button modal-trigger"
+            data-target="modal1"
+            data-service="Solo Walk"
+          >
+            <i class="material-icons left">auto_fix_high</i>Book Me</a
+          >
         </div>
       </div>
 
       <div class="card">
         <div class="card-image">
-          <img src="src/sleep.jpg" alt="Pooch Sleepover">
+          <img src="src/sleep.jpg" alt="Pooch Sleepover" />
         </div>
         <div class="card-content">
           <span class="card-title">Pooch Sleepover</span>
-          <p>Time: 8 hours <br> Cost: $50</p>
+          <p>
+            Time: 8 hours <br />
+            Cost: $50
+          </p>
         </div>
         <div class="col s12 center-align">
-          <a class="waves-effect waves-light btn click-me-button modal-trigger"
-             data-target="modal1"
-             data-service="Pooch Sleepover">
-             <i class="material-icons left">auto_fix_high</i>Book Me</a>
+          <a
+            class="waves-effect waves-light btn click-me-button modal-trigger"
+            data-target="modal1"
+            data-service="Pooch Sleepover"
+          >
+            <i class="material-icons left">auto_fix_high</i>Book Me</a
+          >
         </div>
       </div>
     </div>
@@ -121,23 +147,23 @@
         <form class="col s12">
           <div class="row">
             <div class="input-field col s6">
-              <input id="name" type="text" class="validate" readonly>
+              <input id="name" type="text" class="validate" readonly />
               <label for="name" class="active">Services</label>
             </div>
             <div class="input-field col s6">
-              <input id="phone" type="text" class="validate">
+              <input id="phone" type="text" class="validate" />
               <label for="phone">Phone</label>
             </div>
           </div>
           <div class="row">
             <div class="input-field col s12">
-              <input id="date" type="date" class="validate">
+              <input id="date" type="date" class="validate" />
               <label for="date">Date</label>
             </div>
           </div>
           <div class="row">
             <div class="input-field col s12">
-              <input id="time" type="time" class="validate">
+              <input id="time" type="time" class="validate" />
               <label for="time">Time</label>
             </div>
           </div>
@@ -163,19 +189,24 @@
           <div class="col l4 offset-l2 s12">
             <h5 class="white-text">Company</h5>
             <ul>
-              <li><a class="grey-text text-lighten-3" href="#!">About Us</a></li>
+              <li>
+                <a class="grey-text text-lighten-3" href="#!">About Us</a>
+              </li>
               <li><a class="grey-text text-lighten-3" href="#!">Gallery</a></li>
-              <li><a class="grey-text text-lighten-3" href="#!">Contact Us</a></li>
-              <li><a class="grey-text text-lighten-3" href="#!">Leadership</a></li>
+              <li>
+                <a class="grey-text text-lighten-3" href="#!">Contact Us</a>
+              </li>
+              <li>
+                <a class="grey-text text-lighten-3" href="#!">Leadership</a>
+              </li>
             </ul>
           </div>
         </div>
       </div>
       <div class="footer-copyright">
-        <div class="container">
-          © 2024 Copyright Text
-        </div>
+        <div class="container">© 2024 Copyright Text</div>
       </div>
     </footer>
+    <script type="text/javascript" src="/js/common.js"></script>
   </body>
 </html>

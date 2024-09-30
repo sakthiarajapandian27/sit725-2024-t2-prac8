@@ -202,7 +202,6 @@
         flex-direction: column;
         align-items: center;
         min-height: 100vh;
-        padding-bottom: 60px;
       }
 
       /* Main content width */
@@ -269,7 +268,7 @@
         color: white;
         text-align: center;
         padding: 20px 0;
-        position: fixed; /* Make the footer fixed */
+        position: relative; /* Make the footer fixed */
         bottom: 0; /* Stick to the bottom */
         height: 60px; /* Set a fixed height */
         left: 0; /* Ensure it covers full width */
@@ -279,14 +278,15 @@
   <body>
     <!-- Navbar -->
     <div class="nav-wrapper navy-blue">
-      <a href="/" class="brand-logo">PawFinders</a>
+      <a href="#" class="brand-logo">PawFinders</a>
       <ul id="nav-mobile" class="right hide-on-med-and-down">
-        <li><a href="/">Home</a></li>
+        <li><a href="/dashboard">Home</a></li>
         <li><a href="/galery.html">Gallery</a></li>
-        <li><a href="/bookings.html">View Booking</a></li>
-        <li><a href="/services.html">Services</a></li>
+        <li>
+          <a id="viewBookingsLink" style="cursor: pointer">View bookings</a>
+        </li>
         <li><a href="/about.html">About Us</a></li>
-        <li><a href="/searchUI/findsitter.html">Find a Sitter</a></li>
+        <li><a href="javascript:void(0);" id="logoutLink">Logout</a></li>
       </ul>
     </div>
 
@@ -327,17 +327,14 @@
           </button>
         </form>
       </div>
-      <div id="results">
-        <!-- Search results will be displayed here -->
-      </div>
+      <div id="results"></div>
     </main>
-
-    <footer class="navy-blue">
-      <p>&copy; 2024 PawFinders</p>
-    </footer>
-
-    <!-- Import materialize.js -->
     <script type="text/javascript" src="/js/materialize.min.js"></script>
     <script src="/js/DogsitterSearch.js"></script>
+    <script type="text/javascript" src="/js/common.js"></script>
   </body>
+
+  <footer class="navy-blue">
+    <p class="white-text">&copy; 2024 PawFinders</p>
+  </footer>
 </html>

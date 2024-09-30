@@ -24,7 +24,7 @@
         <ul>
           <li><a href="findsitter.html">Find a Sitter</a></li>
           <li><a id="viewBookingsLink">View bookings</a></li>
-          <li><a href="logout.html">Logout</a></li>
+          <li><a href="javascript:void(0);" id="logoutLink">Logout</a></li>
         </ul>
       </div>
     </header>
@@ -45,10 +45,12 @@
       <button id="contact" class="review-button">Book for Services</button>
 
       <script>
-        document.getElementById("contact").addEventListener("click", function () {
-          // Navigate to another HTML page
-          window.location.href = "services.html"; // Change "services.html" to your target page
-        });
+        document
+          .getElementById("contact")
+          .addEventListener("click", function () {
+            // Navigate to another HTML page
+            window.location.href = "services.html"; // Change "services.html" to your target page
+          });
       </script>
     </div>
     <footer class="navy-blue">
@@ -65,5 +67,6 @@
       crossorigin="anonymous"
     ></script>
     <script type="text/javascript" src="js/walkerProfile.js"></script>
+    <script type="text/javascript" src="/js/common.js"></script>
   </body>
 </html>
