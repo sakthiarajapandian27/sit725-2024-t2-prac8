@@ -1,3 +1,9 @@
+const socket = io();
+
+socket.on("connection", () => {
+  console.log("Connected to Socket io");
+});
+
 $(document).ready(function () {
   $("select").formSelect();
 
@@ -23,6 +29,7 @@ $(document).ready(function () {
       contentType: "application/json",
       success: function (response) {
         alert("Owner registration successful!");
+        socket.emit("register", response._id);
         sessionStorage.setItem("user", JSON.stringify(response));
         window.location.href = "/profile.html";
       },
@@ -60,6 +67,7 @@ $(document).ready(function () {
       contentType: "application/json",
       success: function (response) {
         alert("Walker registration successful!");
+        socket.emit("register", response._id);
         sessionStorage.setItem("user", JSON.stringify(response));
         window.location.href = "/profile.html";
       },
