@@ -4,13 +4,13 @@ console.log(profileData,"profileData")
   const location = JSON.parse(localStorage.getItem("location"));
 
   if (profileData) {
-    $("#firstName").text(profileData.result.firstName);
-    $("#lastName").text(profileData.result.lastName);
-    $("#phone").text(profileData.result.phone);
-    $("#email").text(profileData.result.email);
-    $("#address").text(profileData.result.address);
-    $("#suburb").text(profileData.result.suburb);
-    $("#postalCode").text(profileData.result.postalCode);
+    $("#firstName").text(profileData.firstName);
+    $("#lastName").text(profileData.lastName);
+    $("#phone").text(profileData.phone);
+    $("#email").text(profileData.email);
+    $("#address").text(profileData.address);
+    $("#suburb").text(profileData.suburb);
+    $("#postalCode").text(profileData.postalCode);
   }
 });
 
@@ -19,5 +19,5 @@ document
   .addEventListener("click", function (event) {
     const profileData = JSON.parse(sessionStorage.getItem("user"));
     event.preventDefault();
-    window.location.href = `http://localhost:1/user?userid=${profileData._id}`;
+    window.location.href = `http://localhost:3041/user?userid=${profileData._id}`;
   });

@@ -27,7 +27,7 @@ $(document).ready(function() {
             }),
             success: function(response) {
                 if (response.message === "successful") {
-                    sessionStorage.setItem("user", JSON.stringify(response));
+                    sessionStorage.setItem("user", JSON.stringify(response.result));
                     window.location.href = '/dashboard';
                     alert('Login Successful');
                 } else {
