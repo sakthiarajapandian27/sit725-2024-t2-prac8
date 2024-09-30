@@ -64,7 +64,7 @@ function handleDecline(booking, cardElement) {
 
 const fetchAndDisplayBookings = (userId) => {
   $.ajax({
-    url: `api2/bookings/${userId}`,
+    url: `user/bookings/${userId}`,
     method: "GET",
     success: function (data) {
       updateBookingsLayout(data);
@@ -78,7 +78,7 @@ const fetchAndDisplayBookings = (userId) => {
 const updateBookingConfirmation = (userId, bookingId, confirmation) => {
   userId = window.location.search.replace("?", "").split("=")?.[1] || 1;
   $.ajax({
-    url: `api2/bookings/${userId}`,
+    url: `user/bookings/${userId}`,
     type: "PATCH",
     headers: {
       "Content-Type": "application/json",

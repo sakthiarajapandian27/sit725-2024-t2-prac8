@@ -76,7 +76,7 @@ const getWalkerProfile = async (req, res) => {
     res.status(200).json(bookings);
   } catch (error) {
     console.log(error);
-    res.status(500).json({ error: "Failed to fetch specific booking2" });
+    res.status(500).json({ error: "Failed to fetch specific user" });
   }
 };
 

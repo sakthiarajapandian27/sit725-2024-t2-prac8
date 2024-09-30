@@ -55,9 +55,8 @@ describe("Booking Controller", () => {
 
       expect(booking.findByUserId.calledOnceWith("12345")).to.be.true;
       expect(res.status.calledWith(500)).to.be.true;
-      expect(
-        res.json.calledWith({ error: "Failed to fetch specific booking2" })
-      ).to.be.true;
+      expect(res.json.calledWith({ error: "Failed to fetch specific booking" }))
+        .to.be.true;
     });
   });
 
