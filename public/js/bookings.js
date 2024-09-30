@@ -20,16 +20,16 @@ const updateBookingsLayout = (bookings) => {
 
       card.classList.add("card");
 
-      const time = convertTo24Hour(item.date);
-      const date = getDate(item.date);
+      // const time = convertTo24Hour(item.date);
+      // const date = getDate(item.date);
       let user = null;
 
       // Create card content
       card.innerHTML = `
     <div class="card-title">${item.service} on ${date}</div>
     <div class="card-info">Owner Name: ${item.ownerName}</div>
-    <div class="card-info">Date: ${date}</div>
-    <div class="card-info">Time: ${time}</div>
+    <div class="card-info">Date: ${item.date}</div>
+    <div class="card-info">Time: ${item.time}</div>
     <div class="card-info">Location: ${item.address}</div>
     <div class="card-buttons">
         <button class="confirm-button" id="confirm"> <span class="material-icons">check_circle</span>Confirm</button>
