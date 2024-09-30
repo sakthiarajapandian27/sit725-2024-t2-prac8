@@ -24,7 +24,7 @@ $(document).ready(function () {
       success: function (response) {
         alert("Owner registration successful!");
         sessionStorage.setItem("user", JSON.stringify(response));
-        window.location.href = "/profile.html";
+        window.location.href = "/";
       },
       error: function (error) {
         alert("Error saving owner registration");
@@ -61,7 +61,7 @@ $(document).ready(function () {
       success: function (response) {
         alert("Walker registration successful!");
         sessionStorage.setItem("user", JSON.stringify(response));
-        window.location.href = "/profile.html";
+        window.location.href = "/";
       },
       error: function (error) {
         alert("Error saving walker registration");

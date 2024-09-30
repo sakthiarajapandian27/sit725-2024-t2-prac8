@@ -1,16 +1,16 @@
 $(document).ready(function () {
   const profileData = JSON.parse(sessionStorage.getItem("user"));
-
+console.log(profileData,"profileData")
   const location = JSON.parse(localStorage.getItem("location"));
 
   if (profileData) {
-    $("#firstName").text(profileData.firstName);
-    $("#lastName").text(profileData.lastName);
-    $("#phone").text(profileData.phone);
-    $("#email").text(profileData.email);
-    $("#address").text(profileData.address);
-    $("#suburb").text(profileData.suburb);
-    $("#postalCode").text(profileData.postalCode);
+    $("#firstName").text(profileData.result.firstName);
+    $("#lastName").text(profileData.result.lastName);
+    $("#phone").text(profileData.result.phone);
+    $("#email").text(profileData.result.email);
+    $("#address").text(profileData.result.address);
+    $("#suburb").text(profileData.result.suburb);
+    $("#postalCode").text(profileData.result.postalCode);
   }
 });
 
