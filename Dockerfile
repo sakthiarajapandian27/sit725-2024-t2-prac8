@@ -4,6 +4,6 @@ WORKDIR /usr/src/app
 COPY package*.json ./
 RUN npm ci --omit=dev
 COPY . .
-EXPOSE 3040
+EXPOSE 3041
 
 CMD npm start

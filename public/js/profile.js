@@ -19,5 +19,5 @@ document
   .addEventListener("click", function (event) {
     const profileData = JSON.parse(sessionStorage.getItem("user"));
     event.preventDefault();
-    window.location.href = `http://localhost:3040/user?userid=${profileData._id}`;
+    window.location.href = `http://localhost:1/user?userid=${profileData._id}`;
   });

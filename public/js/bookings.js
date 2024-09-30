@@ -1,11 +1,6 @@
 //socket io
 const socket = io();
-socket.on("connection", () => {
-  console.log("Connected to Socket io");
-});
-
 socket.on("Transaction", (data) => {
-  console.log(data.message);
   showNotification();
 });
 
