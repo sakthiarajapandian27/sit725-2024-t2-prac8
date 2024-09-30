@@ -1,6 +1,5 @@
 $(document).ready(function () {
   const profileData = JSON.parse(sessionStorage.getItem("user"));
-console.log(profileData,"profileData")
   const location = JSON.parse(localStorage.getItem("location"));
 
   if (profileData) {
