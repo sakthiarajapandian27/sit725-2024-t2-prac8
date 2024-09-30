@@ -64,3 +64,21 @@ form {
 .search-btn:hover {
     background-color: #225f5c;
 }
+
+
+.contact-button {
+    background-color: #007B7F; /* Button color */
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    position: absolute; /* Positioning relative to the card */
+    bottom: 15px; /* Distance from the bottom of the card */
+    right: 15px; /* Distance from the right side of the card */
+}
+
+.contact-button:hover {
+    background-color: #005F5F; /* Darker button color on hover */
+}
+

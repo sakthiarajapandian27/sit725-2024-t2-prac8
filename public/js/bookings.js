@@ -10,10 +10,17 @@ socket.on("Transaction", (data) => {
 });
 
 const updateBookingsLayout = (bookings) => {
+  if (bookings.length === 0) {
+    const noNotificationsDiv = document.createElement("div");
+    noNotificationsDiv.classList.add("no-notifications");
+    noNotificationsDiv.innerHTML = "<p>You have no notifications.</p>";
+    document.getElementById("cardsContainer").appendChild(noNotificationsDiv);
+  }
   const cardsContainer = document.getElementById("cardsContainer");
-  let userId = window.location.search.replace("?", "").split("=")?.[1] || 1;
+  let user = JSON.parse(sessionStorage.getItem("user"));
+
   bookings.forEach((item) => {
-    if (!item.confirmed && userId.startsWith("S")) {
+    if (!item.confirmed && user?.type == "WALKER") {
       const card = document.createElement("div");
 
       card.classList.add("card");
@@ -42,7 +49,7 @@ const updateBookingsLayout = (bookings) => {
         .querySelector(".decline-button")
         .addEventListener("click", () => handleDecline(item, card));
       cardsContainer.appendChild(card);
-    } else if (item.confirmation) {
+    } else {
       addToHistory(item);
     }
   });
@@ -51,12 +58,12 @@ const updateBookingsLayout = (bookings) => {
 const handleConfirm = (booking, cardElement) => {
   updateBookingConfirmation(1, booking._id, true);
   cardElement.remove();
-  let userId = booking.ownerId;
-  socket.emit("Transaction", { userId });
+  let notificateUserId = booking.ownerId;
+  socket.emit("Transaction", { notificateUserId });
 };
 
 function handleDecline(booking, cardElement) {
-  updateBookingConfirmation(1, booking._id, false);
+  deleteBooking(booking._id);
   cardElement.remove();
 }
 
@@ -98,6 +105,22 @@ const updateBookingConfirmation = (userId, bookingId, confirmation) => {
   });
 };
 
+const deleteBooking = (bookingId) => {
+  $.ajax({
+    url: `user/bookings/${bookingId}`,
+    type: "DELETE",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    success: function (data) {
+      console.log("deleted");
+    },
+    error: function (error) {
+      console.error("Error updating bookings:", error);
+    },
+  });
+};
+
 function addToHistory(item) {
   const historyContainer = document.getElementById("historyContainer");
 
@@ -109,27 +132,30 @@ function addToHistory(item) {
   const date = getDate(item.date);
   let user = null;
   //Todo: remove once the profile is merged
-  let userId = window.location.search.replace("?", "").split("=")?.[1] || 1;
-  if (userId.startsWith("O")) {
+  let userObj = JSON.parse(sessionStorage.getItem("user"));
+  if (userObj?.type == "OWNER") {
     user = `Sitter Name: ${item.sitterName}`;
   } else {
     user = `Owner Name: ${item.ownerName}`;
   }
-  // if (item.type == "sitter") {
-  //   user = `Sitter Name: ${item.sitterName}`;
-  // } else {
-  //   user = `Owner Name: ${item.ownerName}`;
-  // }
 
-  // Create the content for the history card
   historyCard.innerHTML = `
-     
-      <div class="history-title"> <span class="material-icons">pets</span> ${item.service} on ${date}</div>
-      <div class="card-info">${user}</div>
-      <div class="card-info">Date: ${date}</div>
-      <div class="card-info">Time: ${time}</div>
-      <div class="card-info">Location: ${item.address}</div>
-  `;
+    <div class="history-title"> <span class="material-icons">pets</span> ${
+      item.service
+    } on ${date}</div>
+    <div class="card-info">${user}</div>
+    <div class="card-info">Date: ${date}</div>
+    <div class="card-info">Time: ${time}</div>
+    <div class="card-info">Location: ${item.address}</div>
+    <a href="review.html" class="review-button">Leave a Review</a>
+    ${
+      item.confirmation && item.confirmed
+        ? `<span class="confirmation-label">Confirmed</span>`
+        : !item.confirmed && userObj?.type === "OWNER"
+        ? `<span class="pending-label">Pending Confirmation</span>`
+        : ``
+    }
+`;
 
   // Append the new history card to the history container
   historyContainer.appendChild(historyCard);
@@ -162,10 +188,10 @@ const showNotification = () => {
   var notification = document.getElementById("notification");
   notification.classList.add("show");
 
-  // Hide the notification after 5 seconds
+  // Hide the notification after 50 seconds
   setTimeout(function () {
     notification.classList.remove("show");
-  }, 5000);
+  }, 50000);
 };
 
 const closeNotification = () => {
