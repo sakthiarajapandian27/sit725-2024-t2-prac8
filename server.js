@@ -49,6 +49,13 @@ io.on("connection", (socket) => {
     console.log(`User registered: ${userId}, Socket ID: ${socket.id}`);
   });
 
+  socket.on('user_connected', (data) => {
+    const username = data.username || "Guest";
+    console.log(`${username} has connected`);
+    socket.emit('welcome_message', { message: `Welcome, ${username}!` });
+});
+
+
   socket.on("disconnect", () => {
     for (const id in users) {
       if (users[id] === socket.id) {

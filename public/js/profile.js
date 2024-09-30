@@ -11,7 +11,11 @@ $(document).ready(function () {
     $("#suburb").text(profileData.suburb);
     $("#postalCode").text(profileData.postalCode);
   }
+
+  // Initialize the socket and pass profileData to the socket.js file
+initializeSocket(profileData);
 });
+
 
 document
   .getElementById("viewBookingsLink")
