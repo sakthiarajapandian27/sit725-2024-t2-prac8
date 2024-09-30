@@ -7,6 +7,13 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" href="../public/css/login.css"> 
+    <link
+      type="text/css"
+      rel="stylesheet"
+      href="css/materialize.min.css"
+      media="screen,projection"
+    />
+    <link rel="stylesheet" href="css/profile.css" />
     <!-- Materialize JavaScript -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
     <!-- jQuery -->
@@ -23,7 +30,6 @@
             display: flex;
             flex-direction: column;
             justify-content: space-between;
-            min-height: 100vh;
         }
         .login-container {
             background-color: white;
@@ -32,7 +38,7 @@
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
             max-width: 400px;
             width: 100%;
-            margin: 20px auto;
+            margin: auto;
         }
         h2 {
             text-align: center;
@@ -73,19 +79,9 @@
 <body>
     <script type="text/javascript" src="js/script.js"></script>
     <script type="text/javascript" src="js/materialize.min.js"></script>
-    <nav>
-        <div class="nav-wrapper navy-blue" >
-            <a href="/" class="brand-logo">PawFinders</a>
-            <ul id="nav-mobile" class="right hide-on-med-and-down">
-                <li><a href="/">Home</a></li>
-                <li><a href="galery.html">Gallery</a></li>                
-                <li><a href="services.html">Services</a></li>
-                <li><a href="about.html">About Us</a></li>
-                <li><a href="findsitter.html">Find a Sitter</a></li>
-                <li><a href="signUp.html">Sign Up</a></li>
-            </ul>
-        </div>
-    </nav>
+    <header>
+        <h5>PawFinders</h5>
+    </header>
 
     <div class="login-container z-depth-2">
         <h2>PawFinders</h2>
@@ -119,4 +115,7 @@
         </div>
     </div>
 </body>
+<footer class="navy-blue">
+    <p>&copy; 2024 PawFinders</p>
+  </footer>
 </html>
