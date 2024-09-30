@@ -35,9 +35,8 @@ app.use("/api", apiRoutes); // Serve API routes
 app.use("/user", bookingRoutes); // Bookings-related routes
 app.use("/reviews", reviewRoutes); // Review-related routes
 app.use("/registration", registrationRoutes); // Registration-related routes
-
 app.use("/login", loginRoutes);  // Map the login routes
- 
+
 // Socket setup
 io.on("connection", (socket) => {
   console.log("user connected");
