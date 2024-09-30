@@ -41,36 +41,25 @@ app.use("/login", loginRoutes); // Map the login routes
 // Socket setup
 const users = {};
 io.on("connection", (socket) => {
-  console.log("user sockert");
-  // Listen for user registration
   socket.on("register", (userId) => {
     console.log("user registered");
-    users[userId] = socket.id; // Map userId to socket.id
+    users[userId] = socket.id;
     console.log(`User registered: ${userId}, Socket ID: ${socket.id}`);
   });
 
-  socket.on('user_connected', (data) => {
+  socket.on("user_connected", (data) => {
     const username = data.username || "Guest";
     console.log(`${username} has connected`);
-    socket.emit('welcome_message', { message: `Welcome, ${username}!` });
-});
-
-
-  socket.on("disconnect", () => {
-    for (const id in users) {
-      if (users[id] === socket.id) {
-        delete users[id];
-        console.log(`User unregistered: ${id}`);
-        break;
-      }
-    }
+    socket.emit("welcome_message", { message: `Welcome, ${username}!` });
   });
 
-  socket.on("Transaction", (userId) => {
-    console.log("transaction emiited");
+  socket.on("Transaction", (data) => {
+    let userId = data.notificateUserId;
     const socketId = users[userId];
     if (socketId) {
-      io.to(socketId).emit("notification", { message: "New message" }); // Send notification to specific user
+      io.to(socketId).emit("Transaction", { message: "New message" });
+    } else {
+      socket.broadcast.emit("Transaction", { message: "New message" });
     }
   });
 });

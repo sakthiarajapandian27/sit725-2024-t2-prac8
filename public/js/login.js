@@ -31,7 +31,6 @@ $(document).ready(function () {
       success: function (response) {
         if (response.message === "successful") {
           sessionStorage.setItem("user", JSON.stringify(response.result));
-          console.log("reg" + response.result._id);
           socket.emit("register", response.result._id);
           window.location.href = "/dashboard";
           alert("Login Successful");

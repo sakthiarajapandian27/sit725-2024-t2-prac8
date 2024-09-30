@@ -1,7 +1,6 @@
 //socket io
 const socket = io();
 socket.on("Transaction", (data) => {
-  console.log(data);
   showNotification();
 });
 
@@ -45,7 +44,10 @@ const updateBookingsLayout = (bookings) => {
         .addEventListener("click", () => handleDecline(item, card));
       cardsContainer.appendChild(card);
     } else {
-      addToHistory(item);
+      if (user?.type == "OWNER") {
+        addToHistory(item);
+      } else {
+      }
     }
   });
 };
@@ -59,6 +61,8 @@ const handleConfirm = (booking, cardElement) => {
 
 function handleDecline(booking, cardElement) {
   deleteBooking(booking._id);
+  updateBookingConfirmation(1, booking._id, false);
+  socket.emit("Transaction", { notificateUserId });
   cardElement.remove();
 }
 
@@ -102,7 +106,7 @@ const updateBookingConfirmation = (userId, bookingId, confirmation) => {
 
 const deleteBooking = (bookingId) => {
   $.ajax({
-    url: `user/bookings/${bookingId}`,
+    url: `/user/bookings/${bookingId}`,
     type: "DELETE",
     headers: {
       "Content-Type": "application/json",
@@ -148,6 +152,8 @@ function addToHistory(item) {
         ? `<span class="confirmation-label">Confirmed</span>`
         : !item.confirmed && userObj?.type === "OWNER"
         ? `<span class="pending-label">Pending Confirmation</span>`
+        : item.confirmed && userObj?.type === "OWNER"
+        ? `<span class="pending-label">Rejected</span>`
         : ``
     }
 `;
