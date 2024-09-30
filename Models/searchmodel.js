@@ -11,7 +11,7 @@ const searchschema = new mongoose.Schema({
     postalCode: String,
     password: String,
 }, {
-    collection: 'registrations'
+    collection: 'walkers'
 });
 
 const Search = mongoose.model('Search', searchschema);
