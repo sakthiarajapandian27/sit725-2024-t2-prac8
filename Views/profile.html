@@ -20,7 +20,7 @@
   <body>
     <header>
       <h5>PawFinders</h5>
-      <div class="right-links" style="padding: 6px;">
+      <div class="right-links" style="padding: 6px">
         <ul>
           <li><a href="/dashboard">Home</a></li>
           <li><a href="findsitter.html">Find a Sitter</a></li>
@@ -29,8 +29,12 @@
         </ul>
       </div>
     </header>
-
     <div class="container">
+      <div id="welcomeMessage"></div>
+    </div>
+    
+    <div class="container">
+     
       <h5>Personal Information</h5>
       <div class="profile-info">
         <p><strong>First Name:</strong> <span id="firstName"></span></p>
@@ -41,9 +45,12 @@
         <p><strong>Suburb:</strong> <span id="suburb"></span></p>
         <p><strong>Postal Code:</strong> <span id="postalCode"></span></p>
       </div>
-      <p>For any changes to your profile details, please email us at <a href="mailto:pawfinder@contact.us">pawfinder@contact.us</a></p>
-
+      <p>
+        For any changes to your profile details, please email us at
+        <a href="mailto:pawfinder@contact.us">pawfinder@contact.us</a>
+      </p>
     </div>
+
     <footer class="navy-blue">
       <p>&copy; 2024 PawFinders</p>
     </footer>
@@ -57,6 +64,7 @@
       integrity="sha384-2huaZvOR9iDzHqslqwpR87isEmrfxqyWOF7hr7BY6KG0+hVKLoEXMPUJw3ynWuhO"
       crossorigin="anonymous"
     ></script>
+    <script type="text/javascript" src="js/socket.js"></script>
     <script type="text/javascript" src="js/profile.js"></script>
     <script type="text/javascript" src="js/common.js"></script>
   </body>

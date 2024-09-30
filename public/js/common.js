@@ -1,8 +1,9 @@
-// document.getElementById("logoutLink").addEventListener("click", function () {
-//   sessionStorage.clear();
+document.getElementById("logoutLink").addEventListener("click", function () {
+  sessionStorage.clear();
 
-//   window.location.href = "index.html";
-// });
+  window.location.href = "index.html";
+});
+
 document
   .getElementById("viewBookingsLink")
   .addEventListener("click", function (event) {
