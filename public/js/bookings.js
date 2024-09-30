@@ -1,6 +1,7 @@
 //socket io
 const socket = io();
 socket.on("Transaction", (data) => {
+  console.log(data);
   showNotification();
 });
 
@@ -185,7 +186,7 @@ const showNotification = () => {
   // Hide the notification after 50 seconds
   setTimeout(function () {
     notification.classList.remove("show");
-  }, 50000);
+  }, 500000);
 };
 
 const closeNotification = () => {

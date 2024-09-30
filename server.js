@@ -41,7 +41,13 @@ app.use("/login", loginRoutes); // Map the login routes
 // Socket setup
 const users = {};
 io.on("connection", (socket) => {
-  console.log("user connected");
+  console.log("user sockert");
+  // Listen for user registration
+  socket.on("register", (userId) => {
+    console.log("user registered");
+    users[userId] = socket.id; // Map userId to socket.id
+    console.log(`User registered: ${userId}, Socket ID: ${socket.id}`);
+  });
 
   socket.on("disconnect", () => {
     for (const id in users) {
@@ -53,10 +59,12 @@ io.on("connection", (socket) => {
     }
   });
 
-  socket.on("Transaction", (data) => {
-    socket.broadcast.emit("Transaction", {
-      message: "You have a new message",
-    });
+  socket.on("Transaction", (userId) => {
+    console.log("transaction emiited");
+    const socketId = users[userId];
+    if (socketId) {
+      io.to(socketId).emit("notification", { message: "New message" }); // Send notification to specific user
+    }
   });
 });
 
