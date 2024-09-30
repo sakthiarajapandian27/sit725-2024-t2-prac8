@@ -1,10 +1,10 @@
 <div align="center">
   <a href="https://tridiamond.tech" target="_blank" rel="noopener noreferrer">
-    <img width="450" alt="image" src="https://www.freelytomorrow.com/images/tmp/logo.jpg">
+    <img width="450" alt="image" src="">
   </a>
   <br/>
   <h1> <b> PawFinders </b></h1>
-  <strong>A platform dedicated to helping pet owners reunite with their lost pets. With advanced location tracking and community alerts, Paw Finders ensures a fast and reliable way to bring your furry companions back home.s</strong>
+  <strong>A platform dedicated to helping pet owners reunite with their lost pets. With advanced location tracking and community alerts, Paw Finders ensures a fast and reliable way to bring your furry companions back home.</strong>
 </div>
 
 <br/>
@@ -14,6 +14,7 @@
   <img alt="NODE Version" src="https://img.shields.io/badge/NodeJS-20.9.0-red">
   <img alt="MongoDB Version" src="https://img.shields.io/badge/MongoDB-7.0.0-green">
 </p>
+
 
 This is a public repository for the SIT725 group project, PawFinders. The project aims to [briefly describe the project's purpose and objectives].
 
