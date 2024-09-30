@@ -40,10 +40,16 @@
         <p><strong>Address:</strong> <span id="address"></span></p>
         <p><strong>Suburb:</strong> <span id="suburb"></span></p>
         <p><strong>Postal Code:</strong> <span id="postalCode"></span></p>
-        <p><strong>Password:</strong> <span id="password"></span></p>
       </div>
       <button id="review" class="review-button">Leave a Review</button>
-      <button id="contact" class="review-button">Contact</button>
+      <button id="contact" class="review-button">Book for Services</button>
+
+      <script>
+        document.getElementById("contact").addEventListener("click", function () {
+          // Navigate to another HTML page
+          window.location.href = "services.html"; // Change "services.html" to your target page
+        });
+      </script>
     </div>
     <footer class="navy-blue">
       <p>&copy; 2024 PawFinders</p>
