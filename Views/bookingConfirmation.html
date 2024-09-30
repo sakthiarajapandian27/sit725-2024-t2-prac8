@@ -16,10 +16,18 @@
       media="screen,projection"
     />
     <link rel="stylesheet" href="css/bookingpage.css" />
+    <link rel="stylesheet" href="css/styles.css" />
   </head>
   <body>
-    <header class="navy-blue">
+    <header>
       <h5>PawFinders</h5>
+      <div class="right-links">
+        <ul>
+          <li><a href="findsitter.html">Find a Sitter</a></li>
+          <li><a href="profile.html">Profile</a></li>
+          <li><a href="javascript:void(0);" id="logoutLink">Logout</a></li>
+        </ul>
+      </div>
     </header>
 
     <div class="container">
@@ -35,9 +43,6 @@
       </div>
     </div>
 
-    <a href="review.html">Leave a Review</a>
-    
-    
     <!-- Notification popup -->
     <div id="notification" class="notification-popup">
       <span class="close-btn" onclick="closeNotification()">&times;</span>
@@ -58,5 +63,6 @@
       crossorigin="anonymous"
     ></script>
     <script type="text/javascript" src="js/bookings.js"></script>
+    <script type="text/javascript" src="js/common.js"></script>
   </body>
 </html>

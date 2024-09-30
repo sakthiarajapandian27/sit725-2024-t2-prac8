@@ -9,9 +9,12 @@ const webRoutes = require("./Routes/webroutes"); // Import static file routes
 const apiRoutes = require("./Routes/apiroutes"); // Import API routes
 const bookingRoutes = require("./Routes/bookings");
 const reviewRoutes = require("./Routes/reviews"); // Import review routes
+const registrationRoutes = require("./Routes/registration");
+
+const loginRoutes = require("./Routes/loginroutes");
 
 const app = express();
-const port = 3040;
+const port = 3041;
 
 const socket = require("socket.io");
 const http = require("http");
@@ -29,16 +32,25 @@ app.use(express.static(path.join(__dirname, "Views")));
 // Use the routes
 app.use("/", webRoutes); // Serve static file routes
 app.use("/api", apiRoutes); // Serve API routes
-app.use("/api2", bookingRoutes);
+app.use("/user", bookingRoutes); // Bookings-related routes
 app.use("/reviews", reviewRoutes); // Review-related routes
+app.use("/registration", registrationRoutes); // Registration-related routes
 
+app.use("/login", loginRoutes); // Map the login routes
 
 // Socket setup
+const users = {};
 io.on("connection", (socket) => {
   console.log("user connected");
 
   socket.on("disconnect", () => {
-    console.log("User disconnected");
+    for (const id in users) {
+      if (users[id] === socket.id) {
+        delete users[id];
+        console.log(`User unregistered: ${id}`);
+        break;
+      }
+    }
   });
 
   socket.on("Transaction", (data) => {

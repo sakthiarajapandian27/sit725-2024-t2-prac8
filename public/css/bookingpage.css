@@ -149,3 +149,58 @@ footer {
   .notification-popup .close-btn:hover {
     color: #bbb;
   }
+
+  .review-button {
+    display: inline-block;
+    position: absolute;
+    bottom: 10px; /* Adjusts the position from the bottom */
+    right: 10px;  /* Aligns the button to the right */
+    padding: 6px 12px;
+    background-color: #2D807E;
+    color: #fff;
+    text-decoration: none;
+    font-size: 12px;
+    border-radius: 5px;
+  }
+  
+  .review-button:hover {
+    background-color: #2D807E;
+  }
+
+  .history {
+    position: relative; /* Required for absolute positioning */
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    background-color: #f9f9f9;
+  }
+
+  .confirmation-label {
+    display: inline-block;
+    background-color: #4CAF50; /* Green background for confirmed */
+    color: white; /* White text */
+    padding: 5px 10px; /* Padding around the label */
+    border-radius: 5px; /* Rounded corners */
+    margin-top: 10px; /* Space above the label */
+}
+
+.pending-label {
+    display: inline-block;
+    background-color: #d9860a; /* Orange background for pending */
+    color: white; /* White text */
+    padding: 5px 10px; /* Padding around the label */
+    border-radius: 5px; /* Rounded corners */
+    margin-top: 10px; /* Space above the label */
+}
+
+.no-notifications {
+    background-color: #edd4d4; /* Light red background for no notifications */
+    color: #b00020; /* Dark red text */
+    padding: 10px;
+    border-radius: 5px;
+    text-align: center;
+    margin: 20px; /* Margin to separate from other elements */
+    font-weight: bold; /* Make the message bold */
+}
+
